@@ -40,13 +40,24 @@ function App() {
         <div className="header-right">
           <div className="title-area">
             <img src={valenLogo} alt="Valen" className="logo-valen" />
-            <div className="subtitle">
-              <h2>Valentina Arbeláez</h2>
-              <h3>Diseñadora gráfica</h3>
-            </div>
+            <p className="intro-text-header">
+              <span className="wrap-trigger">Soy <strong>Valentina Arbeláez</strong>, diseñadora gráfica en formación</span> con interés en las áreas de ilustración y de diseño editorial. Me caracterizo por mi atención al detalle, adaptabilidad y enfoque estratégico al desarrollar ideas. Valoro el trabajo colaborativo, la creatividad y la búsqueda constante de soluciones innovadoras.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content Section */}
+      <main className="main-section">
+        <div className="col-left">
+          <div className="bio-container">
+            <div className="bio-blob"></div>
+            <p className="bio-text">
+              Disfruto de las técnicas análogas, soy adaptable, atenta al detalle y estratégica al momento de organizar y ejecutar ideas. Valoro el trabajo colaborativo, la creatividad y la búsqueda constante de soluciones innovadoras que potencien cada propuesta.
+            </p>
           </div>
           
-          <div className="emphasis-area">
+          <div className="emphasis-area" style={{ marginTop: '3rem' }}>
             <h3 className="section-title">Énfasis</h3>
             <div className="stamps-container">
               <div className="stamp-item">
@@ -68,21 +79,6 @@ function App() {
                 <span>*Marca</span>
               </div>
             </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content Section */}
-      <main className="main-section">
-        <div className="col-left">
-          <div className="bio-container">
-            <div className="bio-blob"></div>
-            <p className="bio-intro">
-              <strong>Soy Valentina Arbeláez, diseñadora gráfica en formación, me interesa principalmente la ilustración y el diseño editorial.</strong>
-            </p>
-            <p className="bio-text">
-              Disfruto de las técnicas análogas, soy adaptable, atenta al detalle y estratégica al momento de organizar y ejecutar ideas. Valoro el trabajo colaborativo, la creatividad y la búsqueda constante de soluciones innovadoras que potencien cada propuesta.
-            </p>
           </div>
         </div>
         

@@ -1,11 +1,4 @@
 @font-face {
-  font-family: 'MinionPro';
-  src: url('./assets/fonts/MinionPro-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'Ambit';
   src: url('./assets/fonts/Ambit Regular.otf') format('opentype');
   font-weight: normal;
@@ -14,7 +7,7 @@
 
 @font-face {
   font-family: 'Ambit';
-  src: url('./assets/fonts/Ambit Bold.otf') format('opentype');
+  src: url('./assets/fonts/Ambit SemiBold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }
@@ -27,13 +20,17 @@
 }
 
 @font-face {
-  font-family: 'MAIAN';
-  src: url('./assets/fonts/MAIAN.TTF') format('truetype');
+  font-family: 'Bookmania';
+  src: url('./assets/fonts/fonnts.com-Bookmania_Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'mvboli';
-  src: url('./assets/fonts/mvboli.ttf') format('truetype');
+  font-family: 'Bookmania';
+  src: url('./assets/fonts/fonnts.com-Bookmania_Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
 }
 
 :root {
@@ -42,13 +39,13 @@
   --bg-blob: #E6F7D4;
   --color-primary: #A00028;
   --color-gold: #A6924B;
-  --font-serif: 'MinionPro', serif;
+  --font-serif: 'Ambit', sans-serif;
   --font-sans: 'Ambit', sans-serif;
-  --font-tools: 'MAIAN', cursive;
+  --font-tools: 'Ambit', sans-serif;
   
   font-family: var(--font-sans);
   line-height: 1.2;
-  font-weight: 400;
+  font-weight: 600;
   color: #000;
 }
 
