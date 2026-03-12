@@ -1,0 +1,358 @@
+/* Container to maintain aspect ratio/max width */
+.portfolio-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--bg-body);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* --- HEADER SECTION --- */
+.header-section {
+  background-color: var(--bg-top);
+  display: flex;
+  padding: 2rem 4rem;
+  align-items: center;
+  position: relative;
+  height: 380px;
+}
+
+.header-left {
+  flex: 0 0 45%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+.profile-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 10%;
+  width: 300px;
+  height: 400px;
+  z-index: 10;
+}
+
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  /* Scalloped effect simulated with outline/box-shadow or shape outside */
+  border: 4px solid var(--color-primary);
+  /* TODO: Use advanced mask for scalloped border to be exact */
+}
+
+/* More explicit CSS for exact typography layout */
+.header-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+.title-area {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.logo-valen {
+  height: 110px;
+  object-fit: contain;
+}
+
+.subtitle {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+}
+
+.subtitle h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.subtitle h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+}
+
+.stamps-container {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.stamp-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stamp-box {
+  background-color: #F8E8E8; /* Light pinkish */
+  padding: 0.5rem;
+  /* Simulating postage stamp border */
+  border: 2px dashed #ccc;
+  width: 65px;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stamp-box.y-bg {
+  background-color: #FFFFE0; /* Light yellow for the 3rd key */
+}
+
+.stamp-icon {
+  height: 55px;
+  object-fit: contain;
+}
+
+.stamp-item span {
+  font-size: 0.75rem;
+  font-family: var(--font-serif);
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* --- MAIN SECTION --- */
+.main-section {
+  display: flex;
+  padding: 5rem 4rem 3rem 4rem; /* Top padding to accommodate overlapping photo */
+  gap: 3rem;
+  flex: 1;
+}
+
+.col-left {
+  flex: 0 0 35%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bio-container {
+  position: relative;
+  width: 80%;
+  margin-top: 4rem; /* Space below the profile pic */
+  z-index: 2;
+}
+
+.bio-blob {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  background-color: var(--bg-blob);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  z-index: -1;
+}
+
+.bio-intro {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.bio-text {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-align: justify;
+  line-height: 1.4;
+}
+
+.col-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.edu-text {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+  line-height: 1.4;
+}
+
+.honor-badge {
+  display: flex;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  align-items: flex-start;
+  font-family: var(--font-sans);
+  line-height: 1.2;
+}
+
+.honor-badge .asterisk {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.education-img {
+  width: 140px;
+  margin-left: 1rem;
+}
+
+.tools-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.tools-list li {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.tool-name {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: bold;
+  color: #BECA60; /* Yellowish green from image */
+  font-size: 2.8rem;
+  width: 50px;
+  line-height: 1;
+  text-align: left;
+}
+
+.tool-line {
+  flex: 1;
+  height: 3px;
+  background-color: var(--color-primary);
+  position: relative;
+  border-radius: 2px;
+}
+
+.tool-star {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.col-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 0.5rem;
+  max-width: 200px;
+}
+
+.interest-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.stamp-box-interest {
+  background-color: var(--color-primary);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px dashed white;
+  border-radius: 4px;
+}
+
+.stamp-box-interest.star-bg {
+  background-color: #B5B5E5;
+}
+
+.stamp-box-interest.apple-bg {
+  background-color: #DFEEA4;
+}
+
+.stamp-box-interest img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.interest-item span {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.languages-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.language-item img {
+  width: 25px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.lang-text {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+}
+.lang-text strong {
+  font-weight: bold;
+}
+
+/* --- FOOTER SECTION --- */
+.footer-section {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.6rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-star {
+  font-size: 1rem;
+  line-height: 1;
+  margin-top: 5px;
+}

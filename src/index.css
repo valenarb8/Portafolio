@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'MinionPro';
+  src: url('./assets/fonts/MinionPro-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ambit';
+  src: url('./assets/fonts/Ambit Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ambit';
+  src: url('./assets/fonts/Ambit Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ambit';
+  src: url('./assets/fonts/Ambit SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MAIAN';
+  src: url('./assets/fonts/MAIAN.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'mvboli';
+  src: url('./assets/fonts/mvboli.ttf') format('truetype');
+}
+
+:root {
+  --bg-top: #E1E1FB;
+  --bg-body: #FFFBE6;
+  --bg-blob: #E6F7D4;
+  --color-primary: #A00028;
+  --color-gold: #A6924B;
+  --font-serif: 'MinionPro', serif;
+  --font-sans: 'Ambit', sans-serif;
+  --font-tools: 'MAIAN', cursive;
+  
+  font-family: var(--font-sans);
+  line-height: 1.2;
+  font-weight: 400;
+  color: #000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  margin: 0;
+}

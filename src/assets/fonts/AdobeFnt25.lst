@@ -1,0 +1,158 @@
+%!Adobe-FontList 1.25
+%Locale:0xc0a
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Ambit-Bold
+FamilyName:Ambit
+StyleName:Bold
+FullName:Ambit Bold
+MenuName:Ambit Bold
+StyleBits:2
+WritingScript:Roman
+OutlineFileName:C:\Users\valea\Documents\projecto prueba\Carpeta página de presentación\Document fonts\Ambit Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:62596
+FileModTime:1761199648
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Ambit Bold
+NameArray:0,Win,1,Ambit Bold
+NameArray:0,Win,16,Ambit
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Ambit-Regular
+FamilyName:Ambit
+StyleName:Regular
+FullName:Ambit Regular
+MenuName:Ambit
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\valea\Documents\projecto prueba\Carpeta página de presentación\Document fonts\Ambit Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:59332
+FileModTime:1761199648
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Ambit Regular
+NameArray:0,Win,1,Ambit
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Ambit-SemiBold
+FamilyName:Ambit
+StyleName:SemiBold
+FullName:Ambit SemiBold
+MenuName:Ambit SemiBold
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\valea\Documents\projecto prueba\Carpeta página de presentación\Document fonts\Ambit SemiBold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:61804
+FileModTime:1761199648
+WeightClass:600
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Ambit SemiBold
+NameArray:0,Win,1,Ambit SemiBold
+NameArray:0,Win,16,Ambit
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MaiandraGD-Regular
+FamilyName:Maiandra GD
+StyleName:Regular
+FullName:Maiandra GD
+MenuName:Maiandra GD
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\valea\Documents\projecto prueba\Carpeta página de presentación\Document fonts\MAIAN.TTF
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:61384
+FileModTime:1655721762
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Maiandra GD
+NameArray:0,Win,1,Maiandra GD
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+FullName:Minion Pro
+MenuName:Minion Pro
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\valea\Documents\projecto prueba\Carpeta página de presentación\Document fonts\MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:218640
+FileModTime:1770766146
+WeightClass:400
+WidthClass:5
+AngleClass:0
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MVBoli
+FamilyName:MV Boli
+StyleName:Regular
+FullName:MV Boli
+MenuName:MV Boli
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\valea\Documents\projecto prueba\Carpeta página de presentación\Document fonts\mvboli.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:79320
+FileModTime:1711956127
+WeightClass:400
+WidthClass:5
+AngleClass:1
+NameArray:0,Mac,4,MV Boli
+NameArray:0,Win,1,MV Boli
+%EndFont
+
