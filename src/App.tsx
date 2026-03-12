@@ -1,8 +1,9 @@
 import './App.css';
 
 // Import images
-import profilePic from './assets/images/fotico mia.jpg';
+import profilePic from './assets/images/Fotovalen.png';
 import valenLogo from './assets/images/ValenRojo.png';
+import valenLogoWhite from './assets/images/ValenBlanco.png';
 import keyRed from './assets/images/LlaveRoja.png';
 import keyGreen from './assets/images/LlaveVerde.png';
 import keyPink from './assets/images/Llaverosada.png';
@@ -17,6 +18,18 @@ import lockPink from './assets/images/Candadorosa.png';
 function App() {
   return (
     <div className="portfolio-container">
+      {/* Top Navigation Bar */}
+      <nav className="top-nav">
+        <div className="nav-logo-container">
+          <img src={valenLogoWhite} alt="Valen Blanco" className="nav-logo" />
+        </div>
+        <ul className="nav-links">
+          <li><a href="#">INICIO</a></li>
+          <li><a href="#">SOBRE MÍ</a></li>
+          <li><a href="#">PROYECTOS</a></li>
+        </ul>
+      </nav>
+
       {/* Header Section */}
       <header className="header-section">
         <div className="header-left">
