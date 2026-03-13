@@ -1,0 +1,121 @@
+.projects-page {
+  background-color: var(--bg-body); /* Cream #fff7ef */
+  min-height: calc(100vh - 120px);
+  padding: 60px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.projects-header {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.category-title {
+  font-family: 'Ambit', sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  color: var(--color-primary); /* Red */
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+}
+
+.title-underline {
+  width: 150px;
+  height: 8px;
+  background-color: var(--color-primary);
+  margin-top: 15px;
+  border-radius: 4px;
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+.project-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(169, 16, 36, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(169, 16, 36, 0.1);
+}
+
+.project-image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--bg-body);
+}
+
+.placeholder-text {
+  font-family: 'Ambit', sans-serif;
+  font-weight: 700;
+  color: #ccc;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.project-info {
+  padding: 25px;
+}
+
+.project-info h3 {
+  font-family: 'Ambit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.project-info p {
+  font-family: 'Ambit', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* Decorative elements */
+.projects-decor {
+  position: absolute;
+  font-size: 120px;
+  color: var(--color-primary);
+  opacity: 0.1;
+  font-family: 'Ambit', sans-serif;
+  pointer-events: none;
+}
+
+.decor-1 {
+  top: 10%;
+  right: 5%;
+  transform: rotate(15deg);
+}
+
+.decor-2 {
+  bottom: 5%;
+  left: 3%;
+  transform: rotate(-10deg);
+}

@@ -7,7 +7,14 @@
 
 @font-face {
   font-family: 'Ambit';
-  src: url('./assets/fonts/Ambit SemiBold.otf') format('opentype');
+  src: url('./assets/fonts/Ambit Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ambit';
+  src: url('./assets/fonts/Ambit Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }

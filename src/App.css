@@ -1,7 +1,6 @@
 /* Container to maintain aspect ratio/max width */
 .portfolio-container {
   width: 100%;
-  /* Removed max-width to allow the content to fill larger screens */
   margin: 0 auto;
   background-color: var(--bg-body);
   display: flex;
@@ -14,21 +13,36 @@
   background-color: var(--color-primary); /* Red background */
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align everything towards left flow */
-  padding: 1rem 4rem;
+  justify-content: space-between; /* Spread items as per the new reference */
+  padding: 1.5rem 5rem;
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 100;
+  min-height: 120px;
 }
 
 .nav-logo-container {
-  margin-right: 4rem; /* Leave a space */
+  display: flex;
+  align-items: center;
 }
 
 .nav-logo {
-  height: 50px;
+  height: 80px; /* Larger logo as per reference */
   object-fit: contain;
+}
+
+.nav-star-logo {
+  height: 60px;
+  filter: brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(15deg) brightness(1.1); /* Cream effect on white star */
+  filter: contrast(0) brightness(1.5) sepia(1) hue-rotate(-15deg) saturate(2); /* Tweaked for cream */
+}
+
+/* Actual CSS filter for cream color #fff7ef starting from a dark image */
+.nav-star-logo {
+  height: 60px;
+  /* Using specific filter to achieve #fff7ef from the red/dark star asset */
+  filter: brightness(0) invert(1) sepia(100%) saturate(100%) hue-rotate(10deg) brightness(1.0) contrast(1.0);
 }
 
 .nav-links {
@@ -41,46 +55,108 @@
 
 .nav-links a {
   font-family: var(--font-sans);
-  font-weight: 600; /* Ambit Bold representation */
+  font-weight: 700; /* Points to Ambit Bold */
   text-transform: uppercase;
-  color: #fff7ef; /* Cream color requested */
+  color: #fff7ef;
   text-decoration: none;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  transition: opacity 0.2s;
+  font-size: 1.1rem;
+  padding: 0.6rem 1.8rem;
+  border: 2px solid white;
+  border-radius: 50px; /* Pill shape */
+  transition: all 0.2s;
+  display: inline-block;
 }
 
-.nav-links a:hover {
-  opacity: 0.8;
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: white;
+  color: var(--color-primary);
+}
+
+/* --- DROPDOWN --- */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  z-index: 200;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 15px; /* THE BRIDGE: transparent gap that maintains hover */
+}
+
+.dropdown-inner {
+  background-color: var(--color-primary);
+  border: 2px solid white;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-inner a {
+  color: #fff7ef;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.dropdown-inner a:hover {
+  background-color: white;
+  color: var(--color-primary);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* --- HEADER SECTION --- */
 .header-section {
   background-color: var(--bg-top);
   display: flex;
-  padding: 2vw 5vw 4vw 5vw; /* Reduced top padding to move everything up */
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 80px 0 80px; /* Balanced padding */
   position: relative;
-  min-height: 70vh; /* Reduced from 85vh to find middle ground */
+  min-height: auto;
+  gap: 60px; /* Consistent gap with main-section */
 }
 
-.header-left {
-  flex: 0 0 40%;
+.header-inner {
   display: flex;
-  justify-content: center; /* Center dynamically */
-  padding-right: 1rem;
+  align-items: flex-start;
+  gap: 60px; /* Precise gap matching main-section */
+}
+ 
+.header-left {
+  flex: 0 0 440px; 
+  display: flex;
+  justify-content: center; /* Center the photo frame */
+  align-items: center;
+  padding-right: 0;
 }
 
 /* Profile Wrapper using the pre-framed image */
 .profile-wrapper {
   position: relative; 
-  width: clamp(350px, 45vw, 550px); 
-  height: clamp(400px, 50vw, 650px); 
+  width: 100%; /* Take full 440px */
+  height: 520px; 
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -220px; /* Increased overlap with the section below */
+  margin-bottom: -50px; /* Reduced overlap for cleaner transition */
 }
 
 .profile-pic {
@@ -91,7 +167,7 @@
 
 /* More explicit CSS for exact typography layout */
 .header-right {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   padding-left: 0.5rem;
@@ -102,21 +178,22 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  margin-top: 4rem; /* Moved down as requested */
+  margin-top: 50px; /* Aligned with photo transition */
   margin-bottom: 2rem;
   max-width: 90%;
 }
 
 .intro-text-header {
   font-family: var(--font-sans);
-  font-weight: normal; /* Ambit Regular */
-  font-size: clamp(0.8rem, 1.2vw, 1.05rem); 
+  font-weight: normal;
+  font-size: 16px; /* Reduced to 16px for refinement */
   line-height: 1.6; 
   color: #000;
   display: inline-block; 
-  width: fit-content;    /* Shrink to the longest line (the nowrap one) */
-  text-align: left;      /* Left-aligned as requested */
-  max-width: 450px;      /* Safety fallback */
+  width: fit-content;
+  text-align: left;
+  max-width: 600px;
+  margin-top: 15px; /* Balanced gap with logo */
 }
 
 .wrap-trigger {
@@ -129,32 +206,32 @@
 }
 
 .logo-valen {
-  height: clamp(120px, 12vw, 160px);
+  height: 240px; /* Slightly increased for hero presence */
   object-fit: contain;
 }
 
 .subtitle {
   display: flex;
   flex-direction: column;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0px;
 }
 
 .subtitle h2 {
   font-family: 'Bookmania', serif;
-  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  font-size: 42px;
   font-weight: 600; /* This points to the SemiBold face defined in index.css */
   line-height: 1.1;
 }
 
 .subtitle h3 {
   font-family: 'Bookmania', serif;
-  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-size: 32px;
   font-weight: 600; /* This points to the SemiBold face defined in index.css */
 }
 
 .section-title {
   font-family: 'Bookmania', serif;
-  font-size: clamp(1.5rem, 1.8vw, 2.2rem);
+  font-size: 28px;
   font-weight: bold;
   margin-bottom: 0.8rem;
 }
@@ -172,27 +249,33 @@
 }
 
 .stamp-box {
-  background-color: #F8E8E8; /* Light pinkish */
-  padding: 0.5rem;
-  /* Simulating postage stamp border */
-  border: 4px dashed #ccc;
-  width: clamp(70px, 7vw, 100px);
-  height: clamp(90px, 9vw, 130px);
+  background-color: transparent; 
+  padding: 0;
+  border: none;
+  width: 100px;
+  height: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .stamp-box.y-bg {
-  background-color: #FFFFE0; /* Light yellow for the 3rd key */
+  background-color: transparent; 
+}
+
+.education-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Corrected to left-align */
+  width: 100%;
 }
 
 .stamp-icon {
-  height: clamp(65px, 6vw, 85px);
+  height: 90px;
   object-fit: contain;
 }
 
 .stamp-item span {
-  font-size: clamp(0.8rem, 0.9vw, 1.2rem);
+  font-size: 16px;
   font-family: var(--font-serif);
   font-weight: bold;
   color: var(--color-primary);
@@ -201,18 +284,31 @@
 /* --- MAIN SECTION --- */
 .main-section {
   display: flex;
-  padding: 5vw 5vw 3vw 5vw; /* Fluid padding */
-  gap: 4vw;
+  padding: 0 80px 80px 80px; /* No top padding to follow header immediately */
+  gap: 60px;
   flex: 1;
-  justify-content: space-between;
+  justify-content: center; /* Center to match header-section */
 }
 
 .col-left {
-  flex: 0 0 30%; /* Balanced columns */
-  position: relative;
+  flex: 0 0 440px; 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Center children (photo and green block) */
+  margin-top: 0px; 
+}
+ 
+.info-block-green {
+  background-color: var(--bg-blob);
+  width: 325px; /* Exact match to the visual oval width */
+  padding: 40px 30px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Internal text left-aligned */
+  text-align: left;
+  margin-top: -30px; /* Precise overlap to look stacked */
+  position: relative;
+  z-index: 5;
 }
 
 .bio-container {
@@ -243,9 +339,9 @@
 
 .bio-text {
   font-family: var(--font-sans);
-  font-size: clamp(0.85rem, 1vw, 1.1rem); /* Fluid typography */
-  text-align: justify;
-  line-height: 1.5;
+  font-size: 16px; 
+  text-align: left; /* Consistent with other text */
+  line-height: 1.6;
 }
 
 .col-center {
@@ -253,13 +349,15 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  padding-top: 50px; /* Unified main content alignment */
 }
 
 .edu-text {
-  font-size: 0.85rem;
+  font-size: 1.15rem; /* Increased as requested */
   margin-bottom: 1rem;
   font-family: var(--font-sans);
   line-height: 1.4;
+  text-align: left;
 }
 
 .honor-badge {
@@ -281,7 +379,8 @@
 
 .education-img {
   width: 140px;
-  margin-left: 1rem;
+  align-self: flex-start; /* Ensure left-aligned */
+  margin-left: 0;
 }
 
 .tools-list {
@@ -309,7 +408,7 @@
 }
 
 .tool-line {
-  flex: 1;
+  flex: 0 0 150px; /* Fixed width to make it shorter */
   height: 3px;
   background-color: var(--color-primary);
   position: relative;
@@ -328,14 +427,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4.5rem; /* Slightly more gap as per reference spread */
+  padding-top: 50px; /* Unified main content alignment */
 }
 
 .interests-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem 0.5rem;
-  max-width: 200px;
+  gap: 1.5rem 1rem; /* Better spread */
+  max-width: 250px;
 }
 
 .interest-item {
@@ -346,22 +446,21 @@
 }
 
 .stamp-box-interest {
-  background-color: var(--color-primary);
-  width: 70px;
-  height: 70px;
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px dashed white;
-  border-radius: 4px;
+  border: none;
 }
 
 .stamp-box-interest.star-bg {
-  background-color: #B5B5E5;
+  background-color: transparent;
 }
 
 .stamp-box-interest.apple-bg {
-  background-color: #DFEEA4;
+  background-color: transparent;
 }
 
 .stamp-box-interest img {
