@@ -128,12 +128,10 @@ const Preloader: React.FC = () => {
                   delay: 3.2, 
                   ease: "backOut"
                 }}
-                style={{ filter: 'url(#valen-sparkle-glow)' }}
               >
-                {/* Coordinates: Tip of 'n' tail is approx (520, 160). 
-                    No more cropping because viewBox is very wide. */}
-                <g transform="translate(525, 165)">
-                    <path fill="#ffffff" d="M9.58,192.84c-1.85-1.16,2.24-6.62.54-13.81-2.11-8.92-11.18-12.28-10.02-14.92,1.16-2.63,9.67,1.92,18.77-1.66,9.5-3.73,13.25-13.8,15.1-12.84,1.75.91-3.66,8.89-.72,16.68,3.04,8.04,12.75,9.98,12.02,12.56-.7,2.47-9.29-.63-19.19,3.23-9.97,3.88-14.34,12.12-16.5,10.76Z" transform="translate(-10, -175) scale(1.4)" />
+                {/* Coordinates: Adjusted left slightly to be closer to the text without touching */}
+                <g transform="translate(540, 110)">
+                    <path fill="#ffffff" d="M9.58,192.84c-1.85-1.16,2.24-6.62.54-13.81-2.11-8.92-11.18-12.28-10.02-14.92,1.16-2.63,9.67,1.92,18.77-1.66,9.5-3.73,13.25-13.8,15.1-12.84,1.75.91-3.66,8.89-.72,16.68,3.04,8.04,12.75,9.98,12.02,12.56-.7,2.47-9.29-.63-19.19,3.23-9.97,3.88-14.34,12.12-16.5,10.76Z" transform="translate(-10, -175) scale(1.0)" />
                 </g>
               </motion.g>
             </svg>
