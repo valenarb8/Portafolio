@@ -1,0 +1,200 @@
+.project-detail-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-container {
+  display: flex;
+  flex: 1;
+  padding: 40px;
+  gap: 40px;
+}
+
+/* Sidebar Styling */
+.detail-sidebar {
+  width: 350px;
+  background-color: var(--color-primary); /* Red */
+  border-radius: 40px;
+  padding: 40px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.sidebar-logo {
+  margin-bottom: 40px;
+}
+
+.logo-white {
+  width: 120px;
+}
+
+.sidebar-content {
+  flex: 1;
+}
+
+.project-title-large {
+  font-family: 'Bookmania', serif;
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.project-subtitle-large {
+  font-family: 'Ambit', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.meta-star {
+  font-size: 1.5rem;
+}
+
+.meta-text {
+  font-family: 'Ambit', sans-serif;
+  font-size: 0.9rem;
+}
+
+.project-description-large {
+  font-family: 'Ambit', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.project-credits h3 {
+  font-family: 'Ambit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.project-credits ul {
+  list-style: none;
+  padding: 0;
+}
+
+.project-credits li {
+  font-family: 'Ambit', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.sidebar-icon {
+  margin-top: 40px;
+}
+
+.key-icon-detail {
+  width: 40px;
+  transform: rotate(-45deg);
+}
+
+.sidebar-footer {
+  margin-top: 40px;
+}
+
+.stamp-box-pink {
+  background-color: #ffb7c5;
+  padding: 15px;
+  display: inline-block;
+  border-radius: 5px;
+  color: var(--color-primary);
+  font-family: 'Bookmania', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Main Content Styling */
+.detail-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.maps-container {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.map-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-item img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.map-caption {
+  font-family: 'Ambit', sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+}
+
+.align-right {
+  align-self: flex-end;
+}
+
+/* Detail Footer */
+.detail-footer {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-family: 'Ambit', sans-serif;
+  font-size: 0.8rem;
+  margin-top: auto;
+}
+
+.footer-star {
+  color: white;
+  opacity: 0.5;
+}
+
+/* Back Button */
+.back-button {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: 'Ambit', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}

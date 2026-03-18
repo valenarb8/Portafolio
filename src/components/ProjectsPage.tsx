@@ -2,19 +2,31 @@ import React from 'react';
 import './ProjectsPage.css';
 
 interface ProjectsPageProps {
-  category: 'EDITORIAL' | 'ILUSTRACIÓN' | 'MARCA' | string;
+  category: string;
+  onProjectClick: (id: number) => void;
 }
 
-const ProjectsPage: React.FC<ProjectsPageProps> = ({ category }) => {
-  // Placeholder data for projects
-  const projects = [
-    { id: 1, title: 'Proyecto 1', description: 'Descripción breve del proyecto 1' },
-    { id: 2, title: 'Proyecto 2', description: 'Descripción breve del proyecto 2' },
-    { id: 3, title: 'Proyecto 3', description: 'Descripción breve del proyecto 3' },
-    { id: 4, title: 'Proyecto 4', description: 'Descripción breve del proyecto 4' },
-    { id: 5, title: 'Proyecto 5', description: 'Descripción breve del proyecto 5' },
-    { id: 6, title: 'Proyecto 6', description: 'Descripción breve del proyecto 6' },
-  ];
+// Import a placeholder image (using profilePic or similar as used in HomePage)
+import profilePic from '../assets/images/Fotovalen.png';
+
+const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick }) => {
+  // Determine how many projects to show based on category
+  const projectCounts: Record<string, number> = {
+    'EDITORIAL': 3,
+    'ILUSTRACIÓN': 4,
+    'BRANDING': 3,
+    'MARCA': 3 // Supporting both naming conventions just in case
+  };
+
+  const count = projectCounts[category.toUpperCase()] || 6;
+
+  // Generate the requested number of projects
+  const projects = Array.from({ length: count }, (_, i) => ({
+    id: i + 1,
+    title: `Proyecto ${i + 1}`,
+    description: `Descripción breve ${i + 1}`,
+    image: profilePic
+  }));
 
   return (
     <div className="projects-page">
@@ -26,13 +38,17 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ category }) => {
 
         <div className="projects-grid">
           {projects.map((project) => (
-            <div key={project.id} className="project-card">
-              <div className="project-image-placeholder">
-                <span className="placeholder-text">IMAGEN DEL PROYECTO</span>
-              </div>
-              <div className="project-info">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+            <div 
+            key={project.id} 
+            className="gallery-card"
+            onClick={() => onProjectClick(project.id)}
+          >
+              <img src={project.image} alt={project.title} className="project-img" />
+              <div className="project-overlay">
+                <div className="overlay-content">
+                  <h3 className="overlay-title">{project.title}</h3>
+                  <p className="overlay-description">{project.description}</p>
+                </div>
               </div>
             </div>
           ))}

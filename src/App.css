@@ -269,6 +269,12 @@
   flex-direction: column;
   align-items: center;
   margin-right: -5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.stamp-item:hover {
+  transform: translateY(-8px) scale(1.02);
 }
 
 .mv-asterisk {
@@ -334,8 +340,8 @@
 /* --- MAIN SECTION --- */
 .main-section {
   display: flex;
-  padding: 0 80px 80px 80px;
-  /* No top padding to follow header immediately */
+  padding: 0 80px 40px 80px;
+  /* Reduced bottom padding */
   gap: 60px;
   flex: 1;
   /* Match the header inner container precisely */
@@ -357,7 +363,8 @@
 .info-block-green {
   background-color: transparent;
   width: 300px;
-  padding: 90px 0 40px;
+  padding: 40px 0 20px;
+  /* Significantly reduced top padding */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -406,8 +413,8 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding-top: 90px;
-  /* Unified main content alignment */
+  padding-top: 40px;
+  /* Reduced top padding */
 }
 
 .edu-text {
@@ -503,34 +510,41 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4.5rem;
-  /* Slightly more gap as per reference spread */
-  padding-top: 90px;
-  /* Unified main content alignment */
+  gap: 2.5rem;
+  /* Reduced gap between sections */
+  padding-top: 40px;
+  /* Reduced top padding */
+}
+
+.interests-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .interests-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 1rem;
-  /* Better spread */
-  max-width: 250px;
+  grid-template-columns: 110px 110px;
+  gap: 1rem 1rem;
+  max-width: fit-content;
+  margin: 0 auto;
 }
 
 .interest-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
+  align-items: flex-start;
+  gap: 0.15rem;
 }
 
 .stamp-box-interest {
   background-color: transparent;
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 82px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   border: none;
 }
 
@@ -543,21 +557,23 @@
 }
 
 .stamp-box-interest img {
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .interest-item span {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  text-align: left;
 }
 
 .languages-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.8rem;
 }
 
 .language-item {
