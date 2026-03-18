@@ -188,7 +188,6 @@
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  padding-left: 0.5rem;
 }
 
 .title-area {
@@ -196,8 +195,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  margin-top: 50px;
-  /* Aligned with photo transition */
+  margin-top: 90px;
   margin-bottom: 2rem;
   max-width: 90%;
 }
@@ -229,8 +227,7 @@
 }
 
 .logo-valen {
-  height: 240px;
-  /* Slightly increased for hero presence */
+  height: 160px;
   object-fit: contain;
 }
 
@@ -264,22 +261,33 @@
 
 .stamps-container {
   display: flex;
-  gap: 1.2rem;
+  margin-left: -10px;
 }
 
 .stamp-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  margin-right: -5px;
+}
+
+.mv-asterisk {
+  font-family: 'MV Boli', cursive;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  line-height: 0;
+  display: inline-block;
+  transform: translateY(4px);
+  margin-right: 2px;
+  font-weight: normal;
 }
 
 .stamp-box {
   background-color: transparent;
   padding: 0;
   border: none;
-  width: 100px;
-  height: 130px;
+  width: 110px;
+  height: 143px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -298,15 +306,29 @@
 }
 
 .stamp-icon {
-  height: 90px;
+  height: 143px;
+  width: 110px;
   object-fit: contain;
 }
 
-.stamp-item span {
-  font-size: 16px;
-  font-family: var(--font-serif);
-  font-weight: bold;
-  color: var(--color-primary);
+/* Ajustes individuales (se ajustarán dinámicamente) */
+.stamp-item:nth-child(1) .stamp-icon {
+  transform: scale(1) translateY(0px);
+}
+.stamp-item:nth-child(2) .stamp-icon {
+  transform: scale(0.97) translateY(2px);
+}
+.stamp-item:nth-child(3) .stamp-icon {
+  transform: scale(1.05) translateY(-1px);
+}
+
+.stamp-item .stamp-label {
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: #000;
+  transform: translateX(-18px);
+  display: inline-block;
 }
 
 /* --- MAIN SECTION --- */
@@ -318,7 +340,7 @@
   flex: 1;
   /* Match the header inner container precisely */
   width: 100%;
-  max-width: 1100px;
+  max-width: 1260px;
   margin: 0 auto;
   justify-content: flex-start;
 }
@@ -333,18 +355,14 @@
 }
 
 .info-block-green {
-  background-color: var(--bg-blob);
+  background-color: transparent;
   width: 300px;
-  /* Exact match to the clear visual width of the red wavy circle */
-  padding: 180px 30px 40px;
-  /* Massive padding at the top so the text sits completely below the photo overlap */
+  padding: 90px 0 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Internal text left-aligned */
   text-align: left;
-  /* Bring the box directly under the photo */
-  margin-top: -120px;
+  margin-top: 0;
   position: relative;
   z-index: 5;
 }
@@ -388,7 +406,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding-top: 50px;
+  padding-top: 90px;
   /* Unified main content alignment */
 }
 
@@ -413,9 +431,11 @@
 
 .honor-badge .asterisk {
   color: var(--color-primary);
-  font-size: 1.2rem;
+  font-family: 'MV Boli', cursive;
+  font-size: 1.6rem;
   line-height: 1;
-  font-weight: bold;
+  font-weight: normal;
+  margin-top: -2px;
 }
 
 .education-img {
@@ -439,9 +459,9 @@
 }
 
 .tool-name {
-  font-family: var(--font-serif), serif;
+  font-family: 'Bookmania', serif;
   font-style: italic;
-  font-weight: bold;
+  font-weight: 600;
   color: #BECA60;
   /* Yellowish green from image */
   font-size: 2.8rem;
@@ -459,12 +479,24 @@
   border-radius: 2px;
 }
 
-.tool-star {
-  width: 25px;
-  height: 25px;
+.tool-asterisk {
+  font-family: 'MV Boli', cursive;
+  color: var(--color-primary);
+  font-size: 50px;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  line-height: 1;
+  z-index: 2;
+  text-shadow: 
+    -3px -3px 0 var(--bg-body),
+     0   -3px 0 var(--bg-body),
+     3px -3px 0 var(--bg-body),
+     3px  0   0 var(--bg-body),
+     3px  3px 0 var(--bg-body),
+     0    3px 0 var(--bg-body),
+    -3px  3px 0 var(--bg-body),
+    -3px  0   0 var(--bg-body);
 }
 
 .col-right {
@@ -473,7 +505,7 @@
   flex-direction: column;
   gap: 4.5rem;
   /* Slightly more gap as per reference spread */
-  padding-top: 50px;
+  padding-top: 90px;
   /* Unified main content alignment */
 }
 

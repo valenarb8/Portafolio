@@ -40,6 +40,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Bookmania';
+  src: url('./assets/fonts/fonnts.com-Bookmania_Semibold_Italic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'MV Boli';
+  src: url('./assets/fonts/mvboli.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --bg-top: #E1E1FB;
   --bg-body: #FFFBE6;

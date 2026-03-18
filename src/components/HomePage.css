@@ -1,10 +1,13 @@
 .home-page {
   background-color: var(--bg-body); /* Cream color #fff7ef */
+  background-image: 
+    linear-gradient(to right, rgba(169, 16, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(169, 16, 36, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
   min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .hero-section {
@@ -12,17 +15,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px;
-  position: relative;
+  min-height: calc(100vh - 128px);
+  padding: 0;
 }
 
-.hero-content {
+.hero-logo-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 100px;
   z-index: 5;
-  max-width: 1200px;
-  width: 100%;
+  pointer-events: none;
+}
+
+.hero-center-logo {
+  /* Dimensions are now inline via React to identical Preloader specs */
+  pointer-events: auto;
 }
 
 /* Polaroid Styles */
@@ -114,25 +126,21 @@
   height: 40px;
 }
 
-/* Decorative elements */
-.decor-star {
+/* Bottom corner text */
+.hero-bottom-corner-text {
   position: absolute;
-  opacity: 0.6;
-}
-
-.decor-star img {
-  width: 60px;
-  height: 60px;
-}
-
-.star-1 {
-  top: 15%;
-  left: 10%;
-}
-
-.star-2 {
-  bottom: 10%;
-  right: 15%;
+  top: calc(100vh - 4rem);
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5rem;
+  font-family: 'Bookmania', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  pointer-events: none;
+  z-index: 10;
 }
 
 .grid-overlay {
@@ -172,8 +180,8 @@
 
 .gallery-card {
   position: relative;
-  flex: 0 0 520px; /* Increased size from 450px */
-  aspect-ratio: 4 / 3;
+  flex: 0 0 450px;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 8px;
   cursor: pointer;
