@@ -12,7 +12,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToAbout, onNavigateToProj
   const containerRef = useRef<HTMLDivElement>(null);
 
   const featuredProjects = [
-    { id: 1, title: 'Botanical Lab', category: 'Editorial', image: profilePic },
+    { id: 1, title: 'Jardín del tiempo', category: 'Editorial', image: profilePic },
     { id: 2, title: 'Rise & Glow', category: 'Marca', image: profilePic },
     { id: 3, title: 'Ilustración Vol. 1', category: 'Ilustración', image: profilePic },
     { id: 4, title: 'Editorial Vol. 2', category: 'Editorial', image: profilePic },

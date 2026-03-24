@@ -3,7 +3,6 @@ import './ProjectDetailPage.css';
 
 // Import images
 import valenLogoWhite from '../assets/images/ValenBlanco.png';
-import keyRed from '../assets/images/LlaveRoja.png';
 import mapa1 from '../assets/images/Mapa_1.png';
 import mapa2 from '../assets/images/mapa_2.png';
 
@@ -15,60 +14,67 @@ interface ProjectDetailPageProps {
 const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ id, onBack }) => {
   return (
     <div className="project-detail-page">
-      <div className="detail-container">
-        {/* Left Sidebar */}
-        <div className="detail-sidebar">
-          <div className="sidebar-logo">
-            <img src={valenLogoWhite} alt="Valen" className="logo-white" />
-          </div>
-          
-          <div className="sidebar-content">
-            <h1 className="project-title-large">Jardín del tiempo</h1>
-            <h2 className="project-subtitle-large">MAPA DE LAURELES</h2>
-            
-            <div className="project-meta">
-              <span className="meta-star">*</span>
-              <span className="meta-text">Proyecto académico — 2025</span>
+      <div className="detail-container horizontal-layout">
+        {/* Horizontal Header */}
+        <div className="detail-header-horizontal">
+          <div className="header-top-row">
+            <div className="header-logo">
+              <img src={valenLogoWhite} alt="Valen" className="logo-white" />
             </div>
-            
-            <p className="project-description-large">
-              Se construye desde la idea de dualidad: un lugar donde conviven memoria y proyección, 
-              siendo un jardín donde hay un puente entre el pasado y el futuro. A través de recorridos 
-              y puntos clave, se ve el encuentro entre lo que permanece y lo que cambia.
-            </p>
-            
-            <div className="project-credits">
-              <h3>CRÉDITOS</h3>
-              <ul>
-                <li>DG. Sofía Alzate</li>
-                <li>DG. Sofía Restrepo</li>
-                <li>DG. Ana Sofía Patiño</li>
-                <li>DG. Valentina Arbeláez</li>
-              </ul>
-            </div>
-            
-            <div className="sidebar-icon">
-              <img src={keyRed} alt="Key" className="key-icon-detail" />
+            <div className="header-stamp">
+              <div className="stamp-box-pink">
+                <span>04.</span>
+              </div>
             </div>
           </div>
 
-          <div className="sidebar-footer">
-            <div className="stamp-box-pink">
-              <span>04.</span>
+          <div className="header-columns">
+            <div className="header-left-col">
+              <div className="title-section">
+                <span className="section-label">Nombre del proyecto</span>
+                <div className="title-highlight">
+                  <h1 className="project-title-large">Jardín del tiempo</h1>
+                </div>
+                <h2 className="project-subtitle-large">MAPA DE LAURELES</h2>
+                <div className="project-meta">
+                  <span className="meta-star">*</span>
+                  <span className="meta-text">Proyecto académico — 2025</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="header-right-col">
+              <div className="desc-section">
+                <span className="section-label">Descripción</span>
+                <p className="project-description-large">
+                  Se construye desde la idea de dualidad: un lugar donde conviven memoria y proyección, 
+                  siendo un jardín donde hay un puente entre el pasado y el futuro. A través de recorridos 
+                  y puntos clave, se ve el encuentro entre lo que permanece y lo que cambia.
+                </p>
+                <div className="project-credits">
+                  <h3>CRÉDITOS</h3>
+                  <ul>
+                    <li>DG. Sofía Alzate</li>
+                    <li>DG. Sofía Restrepo</li>
+                    <li>DG. Ana Sofía Patiño</li>
+                    <li>DG. Valentina Arbeláez</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Main Content Area */}
         <div className="detail-main">
-          <div className="maps-container">
-            <div className="map-item top-map">
+          <div className="maps-container horizontal-maps">
+            <div className="map-item">
               <img src={mapa1} alt="Mapa de Laureles" />
               <span className="map-caption">Mapa de Laureles, Comuna 11</span>
             </div>
-            <div className="map-item bottom-map">
+            <div className="map-item">
               <img src={mapa2} alt="Retiro con recomendaciones" />
-              <span className="map-caption align-right">Retiro con recomendaciones locales</span>
+              <span className="map-caption">Retiro con recomendaciones locales</span>
             </div>
           </div>
         </div>
@@ -87,7 +93,7 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ id, onBack }) => 
         <span>Derechos Reservados</span>
       </footer>
       
-      {/* Back Button (Floating or Integrated) */}
+      {/* Back Button */}
       <button className="back-button" onClick={onBack}>
         VOLVER
       </button>
