@@ -280,7 +280,7 @@ function App() {
                   </div>
                 </div>
               </li>
-              <li><a href="/PortafolioValentinaArbelaez2026.pdf" target="_blank" rel="noopener noreferrer">PORTAFOLIO PDF</a></li>
+              <li><a href="./PortafolioValentinaArbelaez2026.pdf" target="_blank" rel="noopener noreferrer">PORTAFOLIO PDF</a></li>
             </ul>
           </nav>
 
