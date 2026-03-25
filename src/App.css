@@ -452,11 +452,19 @@
   margin-left: 0;
 }
 
+.tools-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .tools-list {
   list-style: none;
   display: flex;
+  flex-grow: 1; /* Take up available space */
   flex-direction: column;
-  gap: 1.8rem;
+  justify-content: space-between;
+  padding-bottom: 5px; /* Subtle adjustment to align with the bottom of the right column */
 }
 
 .tools-list li {

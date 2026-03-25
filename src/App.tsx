@@ -65,7 +65,10 @@ function App() {
         if (activeProjectId === 1 && activeCategory === 'EDITORIAL') {
           return <ProjectDetailPage id={activeProjectId} onBack={handleBackToProjects} />;
         }
-        return <ProjectsPage category={activeCategory} onProjectClick={handleProjectClick} />;
+        return <ProjectsPage 
+          category={activeCategory} 
+          onProjectClick={handleProjectClick} 
+        />;
       case 'ABOUT':
         return (
           <>

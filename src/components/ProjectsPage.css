@@ -1,117 +1,122 @@
 .projects-page {
   background-color: var(--bg-body); /* Cream #fff7ef */
-  min-height: calc(100vh - 120px);
-  padding: 60px 80px;
+  height: calc(100vh - 120px); /* Account for nav height */
   position: relative;
   overflow: hidden;
 }
 
-.projects-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 5;
+.projects-scroll-container {
+  height: 100%;
+  overflow-y: overlay; /* or scroll */
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
 }
 
-.projects-header {
-  margin-bottom: 60px;
+.projects-scroll-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+.project-fullscreen-slide {
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.category-title {
-  font-family: 'Ambit', sans-serif;
-  font-weight: 700;
-  font-size: 80px;
-  color: var(--color-primary); /* Red */
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1;
-}
-
-.title-underline {
-  width: 150px;
-  height: 8px;
-  background-color: var(--color-primary);
-  margin-top: 15px;
-  border-radius: 4px;
-}
-
-/* Projects Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 40px;
-}
-
-.project-card {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  border: 1px solid rgba(169, 16, 36, 0.1);
+  transition: background-color 0.5s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(169, 16, 36, 0.1);
-}
-
-.project-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-img {
-  transform: scale(1.05);
-}
-
-.project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 70%);
+.project-slide-content {
   display: flex;
-  align-items: flex-end;
-  padding: 25px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  width: 100%;
+  max-width: 1400px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
-.project-card:hover .project-overlay {
-  opacity: 1;
+/* Columns */
+.project-column-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.overlay-content {
-  color: white;
+.project-column-center {
+  flex: 0 0 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-column-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Typography */
+.project-display-title {
+  font-family: 'Bookmania', serif;
+  font-weight: bold; /* 700 */
+  font-size: 80px;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin: 0;
+  max-width: 500px;
   text-align: left;
 }
 
-.overlay-title {
+.project-display-description {
   font-family: 'Ambit', sans-serif;
-  font-weight: 700;
+  font-weight: 600; /* SemiBold */
   font-size: 24px;
+  color: var(--color-primary);
+  text-align: right;
   margin: 0;
-  line-height: 1.2;
-  color: white;
 }
 
-.overlay-description {
-  font-family: 'Ambit', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  margin: 5px 0 0 0;
-  opacity: 0.9;
-  color: white;
+/* Visual - Tilted Card */
+.project-visual-wrapper {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.project-card-back {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 12px;
+  z-index: 1;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transform-origin: bottom left;
+}
+
+.project-card-front {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  z-index: 2;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  background-color: white;
+  padding: 15px;
+  border-radius: 4px;
+  transform-origin: bottom left;
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover effects are now handled by framer-motion */
 
 /* Decorative elements */
 .projects-decor {
@@ -121,6 +126,7 @@
   opacity: 0.1;
   font-family: 'Ambit', sans-serif;
   pointer-events: none;
+  z-index: 0;
 }
 
 .decor-1 {
@@ -134,3 +140,25 @@
   left: 3%;
   transform: rotate(-10deg);
 }
+
+@media (max-width: 1024px) {
+  .project-display-title {
+    font-size: 50px;
+  }
+  .project-column-center {
+    flex: 0 0 350px;
+  }
+  .project-visual-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+  .project-card-back {
+    width: 280px;
+    height: 350px;
+  }
+  .project-card-front {
+    width: 300px;
+    height: 300px;
+  }
+}
+
