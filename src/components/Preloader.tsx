@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 const Preloader: React.FC = () => {
   const [complete, setComplete] = useState(false);
@@ -12,7 +12,7 @@ const Preloader: React.FC = () => {
   }, []);
 
   // Variant for "sketch" reveal: Draw outline then fade fill
-  const sketchVariants = {
+  const sketchVariants: Variants = {
     hidden: { 
       pathLength: 0, 
       fillOpacity: 0,

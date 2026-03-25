@@ -11,7 +11,7 @@ interface ProjectDetailPageProps {
   onBack: () => void;
 }
 
-const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ id, onBack }) => {
+const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ onBack }) => {
   return (
     <div className="project-detail-page">
       <div className="detail-container horizontal-layout">
