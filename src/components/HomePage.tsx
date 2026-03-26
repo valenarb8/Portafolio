@@ -3,11 +3,10 @@ import './HomePage.css';
 import profilePic from '../assets/images/Fotovalen.png';
 
 interface HomePageProps {
-  onNavigateToAbout: () => void;
   onNavigateToProjects: (category: string) => void;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ onNavigateToAbout, onNavigateToProjects }) => {
+const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects }) => {
   const [activeId, setActiveId] = useState<number>(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -95,12 +94,6 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToAbout, onNavigateToProj
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="cta-section">
-        <button className="cta-button" onClick={onNavigateToAbout}>
-          CONOCER MÁS SOBRE MÍ
-        </button>
       </div>
     </div>
   );

@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import React from 'react';
+import { motion, type Variants } from 'framer-motion';
 
 const Preloader: React.FC = () => {
-  const [complete, setComplete] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setComplete(true);
-    }, 4500); 
-    return () => clearTimeout(timer);
-  }, []);
-
   // Variant for "sketch" reveal: Draw outline then fade fill
   const sketchVariants: Variants = {
     hidden: { 
@@ -31,14 +22,12 @@ const Preloader: React.FC = () => {
   };
 
   return (
-    <AnimatePresence>
-      {!complete && (
-        <motion.div
-          className="preloader-container"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          style={{
+    <motion.div
+      className="preloader-container"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.2, ease: "easeInOut" }}
+      style={{
             position: 'fixed',
             top: 0,
             left: 0,
@@ -136,9 +125,7 @@ const Preloader: React.FC = () => {
               </motion.g>
             </svg>
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    </motion.div>
   );
 };
 

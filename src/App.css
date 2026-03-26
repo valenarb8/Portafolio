@@ -11,73 +11,108 @@
 /* --- NAVIGATION BAR --- */
 .top-nav {
   background-color: var(--color-primary);
-  /* Red background */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Spread items as per the new reference */
-  padding: 1.5rem 5rem;
-  width: 100%;
+  padding: 0 3.5rem;
+  width: 90%;
+  max-width: 1300px;
+  margin: 30px auto 0 auto;
+  border-radius: 60px;
   position: sticky;
-  top: 0;
+  top: 25px;
   z-index: 100;
-  min-height: 120px;
+  height: 85px;
+  box-shadow: 0 15px 35px rgba(169, 16, 36, 0.2);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.nav-logo-container {
+.top-nav.transparent-nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.top-nav.static-nav {
+  position: relative;
+}
+
+.top-nav.transparent-nav .nav-links {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.top-nav.transparent-nav .nav-rotating-asterisk {
+  color: var(--color-primary);
+}
+
+.nav-rotating-asterisk-container {
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  will-change: transform;
 }
 
-.nav-logo {
-  height: 80px;
-  /* Larger logo as per reference */
-  object-fit: contain;
-}
-
-.nav-star-logo {
-  height: 60px;
-  filter: brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(15deg) brightness(1.1);
-  /* Cream effect on white star */
-  filter: contrast(0) brightness(1.5) sepia(1) hue-rotate(-15deg) saturate(2);
-  /* Tweaked for cream */
-}
-
-/* Actual CSS filter for cream color #fff7ef starting from a dark image */
-.nav-star-logo {
-  height: 60px;
-  /* Using specific filter to achieve #fff7ef from the red/dark star asset */
-  filter: brightness(0) invert(1) sepia(100%) saturate(100%) hue-rotate(10deg) brightness(1.0) contrast(1.0);
+.nav-rotating-asterisk {
+  font-family: 'Segoe UI Symbol', system-ui, sans-serif;
+  font-size: 55px;
+  color: #fff7ef;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2.5rem;
+  gap: 2.5rem; /* Increased back to separate loose text */
   margin: 0;
   padding: 0;
+  transition: opacity 0.4s ease;
 }
 
 .nav-links a {
   font-family: var(--font-sans);
-  font-weight: 700;
-  /* Points to Ambit Bold */
+  font-weight: 900;
   text-transform: uppercase;
   color: #fff7ef;
   text-decoration: none;
   font-size: 1.1rem;
-  padding: 0.6rem 1.8rem;
-  border: 2px solid white;
-  border-radius: 50px;
-  /* Pill shape */
-  transition: all 0.2s;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: opacity 0.2s, color 0.2s;
   display: inline-block;
 }
 
-.nav-links a:hover,
+.nav-links a::after {
+  content: '*';
+  font-family: 'MV Boli', cursive;
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  pointer-events: none;
+  font-weight: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+.nav-links a:hover {
+  color: #ffa3cf; /* Pastel pink, but with a bit more saturation to pop */
+}
+
+.nav-links a:hover::after {
+  opacity: 1;
+  color: #ffa3cf;
+}
+
 .nav-links a.active {
-  background-color: white;
-  color: var(--color-primary);
+  color: #dfdbff; /* Custom light blue requested */
 }
 
 /* --- DROPDOWN --- */
@@ -117,12 +152,12 @@
   border-radius: 0;
   text-align: center;
   font-size: 0.9rem;
-  transition: all 0.2s;
+  transition: background-color 0.2s;
 }
 
 .dropdown-inner a:hover {
-  background-color: white;
-  color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff7ef;
 }
 
 .dropdown:hover .dropdown-content {
@@ -135,12 +170,27 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 60px 80px 0 80px;
+  padding: 135px 80px 20px 80px;
   /* Balanced padding */
   position: relative;
   min-height: auto;
   gap: 60px;
   /* Consistent gap with main-section */
+  margin-bottom: 30px;
+  margin-top: -115px;
+}
+
+.header-section::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-image: radial-gradient(circle at 50% 0, var(--bg-top) 30px, transparent 30.5px);
+  background-size: 60px 100%;
+  background-repeat: repeat-x;
+  z-index: 1;
 }
 
 .header-inner {
@@ -151,6 +201,8 @@
   width: 100%;
   max-width: 1100px;
   justify-content: flex-start;
+  position: relative;
+  z-index: 10;
 }
 
 .header-left {
@@ -162,7 +214,6 @@
   padding-right: 0;
 }
 
-/* Profile Wrapper using the pre-framed image */
 .profile-wrapper {
   position: relative;
   width: 100%;
@@ -173,6 +224,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: -50px;
+  transform: translateY(40px);
   /* Reduced overlap for cleaner transition */
   /* Shift removed to ensure perfect alignment */
 }
