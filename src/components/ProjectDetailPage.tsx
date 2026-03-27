@@ -1,65 +1,68 @@
 import React from 'react';
 import './ProjectDetailPage.css';
-
-// Import images
-import valenLogoWhite from '../assets/images/ValenBlanco.png';
-import mapa1 from '../assets/images/Mapa_1.png';
-import mapa2 from '../assets/images/mapa_2.png';
+import { projectsData } from '../data/projects';
+import llaveRosada from '../assets/images/Llaverosada.png';
 
 interface ProjectDetailPageProps {
   id: number;
-  onBack: () => void;
 }
 
-const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ onBack }) => {
+const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ id }) => {
+  const project = projectsData.find(p => p.id === id);
+
+  if (!project) {
+    return <div className="project-detail-page">Proyecto no encontrado</div>;
+  }
+
+  // Helper to render title with potential breaks
+  const renderTitle = (title: string) => {
+    return title.split('\n').map((line, i) => (
+      <React.Fragment key={i}>
+        {line}
+        {i < title.split('\n').length - 1 && <br />}
+      </React.Fragment>
+    ));
+  };
+
   return (
     <div className="project-detail-page">
       <div className="detail-container horizontal-layout">
         {/* Horizontal Header */}
         <div className="detail-header-horizontal">
-          <div className="header-top-row">
-            <div className="header-logo">
-              <img src={valenLogoWhite} alt="Valen" className="logo-white" />
-            </div>
-            <div className="header-stamp">
-              <div className="stamp-box-pink">
-                <span>04.</span>
-              </div>
-            </div>
-          </div>
-
           <div className="header-columns">
             <div className="header-left-col">
               <div className="title-section">
-                <span className="section-label">Nombre del proyecto</span>
                 <div className="title-highlight">
-                  <h1 className="project-title-large">Jardín del tiempo</h1>
+                  <h1 className="project-title-large">{renderTitle(project.title)}</h1>
+                  <img src={llaveRosada} alt="Llave decorativa" className="title-key-icon" />
                 </div>
-                <h2 className="project-subtitle-large">MAPA DE LAURELES</h2>
-                <div className="project-meta">
-                  <span className="meta-star">*</span>
-                  <span className="meta-text">Proyecto académico — 2025</span>
+                <h2 className="project-subtitle-large">{project.subtitle}</h2>
+                <div className="project-meta-list">
+                  {project.info.filter(item => item.label !== 'CRÉDITOS').map((item, idx) => (
+                    <div key={idx} className="project-meta">
+                      <span className="meta-star">*</span>
+                      <span className="meta-text">{item.label} — {item.value}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
             
             <div className="header-right-col">
               <div className="desc-section">
-                <span className="section-label">Descripción</span>
                 <p className="project-description-large">
-                  Se construye desde la idea de dualidad: un lugar donde conviven memoria y proyección, 
-                  siendo un jardín donde hay un puente entre el pasado y el futuro. A través de recorridos 
-                  y puntos clave, se ve el encuentro entre lo que permanece y lo que cambia.
+                  {project.description}
                 </p>
-                <div className="project-credits">
-                  <h3>CRÉDITOS</h3>
-                  <ul>
-                    <li>DG. Sofía Alzate</li>
-                    <li>DG. Sofía Restrepo</li>
-                    <li>DG. Ana Sofía Patiño</li>
-                    <li>DG. Valentina Arbeláez</li>
-                  </ul>
-                </div>
+                {project.info.find(item => item.label === 'CRÉDITOS') && (
+                  <div className="project-credits">
+                    <h3>CRÉDITOS</h3>
+                    <ul>
+                      {project.info.find(item => item.label === 'CRÉDITOS')?.value.split(',').map((name, i) => (
+                        <li key={i}>{name.trim()}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -67,36 +70,16 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ onBack }) => {
 
         {/* Main Content Area */}
         <div className="detail-main">
-          <div className="maps-container horizontal-maps">
-            <div className="map-item">
-              <img src={mapa1} alt="Mapa de Laureles" />
-              <span className="map-caption">Mapa de Laureles, Comuna 11</span>
-            </div>
-            <div className="map-item">
-              <img src={mapa2} alt="Retiro con recomendaciones" />
-              <span className="map-caption">Retiro con recomendaciones locales</span>
-            </div>
+          <div className={`maps-container ${project.images.length > 1 ? 'horizontal-maps' : 'single-image'}`}>
+            {project.images.map((img, idx) => (
+              <div key={idx} className="map-item">
+                <img src={img.url} alt={img.caption} />
+                <span className="map-caption">{img.caption}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      {/* Bottom info bar */}
-      <footer className="detail-footer">
-        <span>+57 311 360 6718</span>
-        <span className="footer-star">*</span>
-        <span>valenarbelaezd.wixsite.com</span>
-        <span className="footer-star">*</span>
-        <span>valearbelaez.06@gmail.com</span>
-        <span className="footer-star">*</span>
-        <span>Medellín * Colombia 2026</span>
-        <span className="footer-star">*</span>
-        <span>Derechos Reservados</span>
-      </footer>
-      
-      {/* Back Button */}
-      <button className="back-button" onClick={onBack}>
-        VOLVER
-      </button>
     </div>
   );
 };

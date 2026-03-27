@@ -1,159 +1,118 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
 import './ProjectsPage.css';
-
-// Import assets
-import profilePic from '../assets/images/Fotovalen.png';
-import mapa1 from '../assets/images/Mapa_1.png';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-}
-
-interface ProjectSlideProps {
-  project: Project;
-  color: string;
-  onProjectClick: (id: number) => void;
-}
-
-const ProjectSlide: React.FC<ProjectSlideProps> = ({ project, color, onProjectClick }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Mouse position motion values (normalized 0 to 1)
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-
-  // Smooth the mouse values
-  const springConfig = { stiffness: 150, damping: 30 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
-  // Map mouse positions to rotations
-  // Back card rotates more significantly
-  const rotateBack = useTransform(smoothX, [0, 1], [15, -15]);
-  const rotateYBack = useTransform(smoothX, [0, 1], [-10, 10]);
-  const rotateXBack = useTransform(smoothY, [0, 1], [10, -10]);
-  
-  // Front card rotates subtly
-  const rotateFront = useTransform(smoothX, [0, 1], [5, -5]);
-  const rotateYFront = useTransform(smoothX, [0, 1], [-5, 5]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0.5);
-    mouseY.set(0.5);
-  };
-
-  return (
-    <div 
-      ref={containerRef}
-      className="project-fullscreen-slide"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onClick={() => onProjectClick(project.id)}
-    >
-      <div className="project-slide-content">
-        <div className="project-column-left">
-          <h2 className="project-display-title">{project.title}</h2>
-        </div>
-        
-        <div className="project-column-center">
-          <div className="project-visual-wrapper">
-            <motion.div 
-              className="project-card-back" 
-              style={{ 
-                backgroundColor: color,
-                rotateZ: rotateBack,
-                rotateY: rotateYBack,
-                rotateX: rotateXBack,
-                transformPerspective: 1000
-              }}
-            ></motion.div>
-            <motion.div 
-              className="project-card-front"
-              style={{
-                rotateZ: rotateFront,
-                rotateY: rotateYFront,
-                transformPerspective: 1000
-              }}
-            >
-              <img src={project.image} alt={project.title} className="project-thumbnail" />
-            </motion.div>
-          </div>
-        </div>
-        
-        <div className="project-column-right">
-          <p className="project-display-description">{project.description}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
+import { projectsData } from '../data/projects';
 
 interface ProjectsPageProps {
   category: string;
   onProjectClick: (id: number) => void;
+  onHideNav?: (hide: boolean) => void;
 }
 
-const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick }) => {
-  // Category specific configuration
-  const categoryConfigs: Record<string, { color: string; projects: Project[] }> = {
-    'EDITORIAL': {
-      color: '#FFD0DF',
-      projects: [
-        { id: 1, title: 'Jardín del tiempo', description: 'Real Estate', image: mapa1 },
-        { id: 2, title: 'Editorial Project 2', description: 'Descripción', image: profilePic },
-        { id: 3, title: 'Editorial Project 3', description: 'Descripción', image: profilePic },
-      ]
-    },
-    'ILUSTRACIÓN': {
-      color: '#DFDBFF',
-      projects: [
-        { id: 4, title: 'Ilustración Project 1', description: 'Descripción', image: profilePic },
-        { id: 5, title: 'Ilustración Project 2', description: 'Descripción', image: profilePic },
-        { id: 6, title: 'Ilustración Project 3', description: 'Descripción', image: profilePic },
-        { id: 7, title: 'Ilustración Project 4', description: 'Descripción', image: profilePic },
-      ]
-    },
-    'BRANDING': {
-      color: '#F1F5BA',
-      projects: [
-        { id: 8, title: 'Branding Project 1', description: 'Descripción', image: profilePic },
-        { id: 9, title: 'Branding Project 2', description: 'Descripción', image: profilePic },
-        { id: 10, title: 'Branding Project 3', description: 'Descripción', image: profilePic },
-      ]
-    }
+const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick, onHideNav }) => {
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Category specific colors matching the previous design
+  const categoryColors: Record<string, string> = {
+    'EDITORIAL': '#FFB8D1',
+    'ILUSTRACIÓN': '#AECBD6',
+    'BRANDING': '#AEC782'
   };
 
-  const config = categoryConfigs[category.toUpperCase()] || { color: '#FFD0DF', projects: [] };
+  const activeCategory = category.toUpperCase();
+  const color = categoryColors[activeCategory] || '#FFB8D1';
+  const projects = projectsData.filter(p => p.category === activeCategory);
+  const N = projects.length;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sentinelRef.current) return;
+      const rect = sentinelRef.current.getBoundingClientRect();
+      
+      const lastCardTop = 100 + (N - 1) * 110;
+      
+      // Proactive fade like in HomePage
+      if (rect.top <= lastCardTop + 50) {
+        if (onHideNav) onHideNav(true);
+      } else {
+        if (onHideNav) onHideNav(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Check initially
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (onHideNav) {
+        onHideNav(false);
+      }
+    };
+  }, [onHideNav, N]);
 
   return (
-    <div className="projects-page">
-      <div className="projects-scroll-container">
-        {config.projects.map((project) => (
-          <ProjectSlide 
-            key={project.id} 
-            project={project} 
-            color={config.color} 
-            onProjectClick={onProjectClick} 
-          />
-        ))}
+    <div className="home-page" style={{ paddingTop: '150px', paddingBottom: '100px' }}>
+      <div className="stacked-categories-container">
+        {projects.map((project, index) => {
+          const wrapperHeight = (N - 1 - index) * 110 + 420;
+
+          return (
+            <React.Fragment key={project.id}>
+              {index === N - 1 && <div ref={sentinelRef} style={{ width: '100%', height: '1px' }} />}
+              <div 
+                className="stacked-category-wrapper"
+                style={{ 
+                  position: 'sticky',
+                  top: `${100 + (index * 110)}px`,
+                  zIndex: 1010 + index,
+                  height: `${wrapperHeight}px`
+                }}
+              >
+                {index === 0 && (
+                  <h1 style={{
+                    position: 'absolute',
+                    top: '-90px',
+                    left: '0',
+                    fontFamily: "'Ambit', sans-serif", 
+                    fontSize: '70px', 
+                    color: 'var(--color-primary)', 
+                    margin: 0,
+                    textTransform: 'uppercase',
+                    fontWeight: 'bold',
+                    lineHeight: 1,
+                    pointerEvents: 'none'
+                  }}>
+                    {category}
+                  </h1>
+                )}
+                <div 
+                  className="stacked-category-card"
+                  style={{ 
+                    backgroundColor: color,
+                    color: '#1A3A3A'
+                  }}
+                  onClick={() => onProjectClick(project.id)}
+                >
+                  <div className="card-top">
+                    <h2 className="card-title" style={{ color: '#1A3A3A' }}>{project.title}</h2>
+                    <span className="card-number" style={{ color: '#1A3A3A' }}>({index < 9 ? '0' : ''}{index + 1})</span>
+                  </div>
+                  <div className="card-bottom">
+                    <p className="card-desc" style={{ color: '#1A3A3A' }}>{project.description}</p>
+                    <div className="card-image-wrapper" style={{ boxShadow: '0 5px 20px rgba(0,0,0,0.1)' }}>
+                      <img src={project.images[0].url} alt={project.title} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
       
-      {/* Decorative stars */}
-      <div className="projects-decor decor-1">*</div>
-      <div className="projects-decor decor-2">*</div>
+      {/* Decorative stars inherited from previous design */}
+      <div className="projects-decor decor-1" style={{ color: color }}>*</div>
+      <div className="projects-decor decor-2" style={{ color: color }}>*</div>
     </div>
   );
 };

@@ -24,8 +24,9 @@
   z-index: 100;
   height: 85px;
   box-shadow: 0 15px 35px rgba(169, 16, 36, 0.2);
-  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
 }
+
 
 .top-nav.transparent-nav {
   background-color: transparent;
@@ -663,13 +664,32 @@
 .footer-section {
   background-color: var(--color-primary);
   color: white;
-  padding: 0.6rem 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
+  padding: 0.6rem 0;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
   font-family: var(--font-sans);
   font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.footer-marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 120s linear infinite;
+}
+
+.footer-marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 1.5rem; /* Matches the gap for seamless looping */
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .footer-section a {

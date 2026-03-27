@@ -1,47 +1,71 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './HomePage.css';
 import profilePic from '../assets/images/Fotovalen.png';
+import valen1 from '../assets/images/Valenilustrada1.png';
+import valen2 from '../assets/images/Valenilustrada2.png';
 
 interface HomePageProps {
   onNavigateToProjects: (category: string) => void;
+  onHideNav: (hide: boolean) => void;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects }) => {
-  const [activeId, setActiveId] = useState<number>(1);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const featuredProjects = [
-    { id: 1, title: 'Jardín del tiempo', category: 'Editorial', image: profilePic },
-    { id: 2, title: 'Rise & Glow', category: 'Marca', image: profilePic },
-    { id: 3, title: 'Ilustración Vol. 1', category: 'Ilustración', image: profilePic },
-    { id: 4, title: 'Editorial Vol. 2', category: 'Editorial', image: profilePic },
-    { id: 5, title: 'Personal Brand', category: 'Marca', image: profilePic },
-    { id: 6, title: 'Nature Series', category: 'Ilustración', image: profilePic },
-  ];
+const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) => {
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observerOptions = {
-      root: containerRef.current,
-      threshold: 0.7, // Card must be 70% visible to be active
+    const handleScroll = () => {
+      if (!sentinelRef.current) return;
+      const rect = sentinelRef.current.getBoundingClientRect();
+      
+      // Card 3 sticks at 350px. When sentinel reaches 350px, the stack is fully assembled.
+      // We trigger the fade slightly early at 400px so it dissolves proactively.
+      if (rect.top <= 400) {
+        if (onHideNav) onHideNav(true);
+      } else {
+        if (onHideNav) onHideNav(false);
+      }
     };
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = Number(entry.target.getAttribute('data-id'));
-          setActiveId(id);
-        }
-      });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (onHideNav) {
+        onHideNav(false);
+      }
     };
+  }, [onHideNav]);
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
-    // Observer each gallery card
-    const cards = document.querySelectorAll('.gallery-card');
-    cards.forEach(card => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
+  const stackedCategories = [
+    { 
+      id: 'EDITORIAL', 
+      title: 'Editorial', 
+      number: '(01)', 
+      desc: 'Diseño de piezas gráficas y exploración visual estructurada para crear publicaciones con una identidad muy auténtica.',
+      image: profilePic,
+      bgColor: '#FFB8D1', // Pastel Pink
+      textColor: '#8B002B' // Dark Red
+    },
+    { 
+      id: 'ILUSTRACIÓN', 
+      title: 'Ilustración', 
+      number: '(02)', 
+      desc: 'Creación de imágenes envolventes, piezas artísticas y personajes únicos mediante diversas técnicas visuales muy ricas.',
+      image: valen1,
+      bgColor: '#AECBD6', // Pastel Blue
+      textColor: '#1A3A3A' // Dark Teal
+    },
+    { 
+      id: 'MARCA', 
+      title: 'Marca', 
+      number: '(03)', 
+      desc: 'Desarrollo de estilo visual integral, estrategia sólida y posicionamiento de imagen para construir marcas que sean especiales.',
+      image: valen2,
+      bgColor: '#AEC782', // Pastel Green
+      textColor: '#2E4D2B' // Dark Green
+    }
+  ];
 
   return (
     <div className="home-page">
@@ -75,25 +99,60 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects }) => {
         </div>
       </div>
 
-      <div className="project-gallery-section">
-        <div className="gallery-container" ref={containerRef}>
-          {featuredProjects.map((project) => (
-            <div 
-              key={project.id} 
-              data-id={project.id}
-              className={`gallery-card ${activeId === project.id ? 'active' : ''}`}
-              onClick={() => onNavigateToProjects(project.category.toUpperCase())}
-            >
-              <img src={project.image} alt={project.title} className="gallery-img" />
-              <div className="gallery-overlay">
-                <div className="overlay-content">
-                  <h3 className="overlay-title">{project.title}</h3>
-                  <p className="overlay-category">{project.category}</p>
+      <div className="stacked-categories-container">
+        {stackedCategories.map((cat, index) => {
+          const wrapperHeight = 640 - (index * 110);
+
+          return (
+            <React.Fragment key={cat.id}>
+              {index === 2 && <div ref={sentinelRef} style={{ width: '100%', height: '1px' }} />}
+              <div 
+                className="stacked-category-wrapper"
+                style={{ 
+                  position: 'sticky',
+                  top: `${130 + (index * 110)}px`,
+                  zIndex: 1010 + index,
+                  height: `${wrapperHeight}px`
+                }}
+              >
+              <div 
+                className="stacked-category-card"
+                style={{ 
+                  backgroundColor: cat.bgColor,
+                  color: cat.textColor
+                }}
+                onClick={() => onNavigateToProjects(cat.id)}
+              >
+                <div className="card-top">
+                  <h2 className="card-title" style={{ 
+                    color: cat.textColor,
+                    fontFamily: "'Ambit', sans-serif",
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase'
+                  }}>
+                    {cat.title}
+                    <span style={{ 
+                      fontFamily: "'MV Boli', cursive", 
+                      fontWeight: 'normal', 
+                      paddingLeft: '10px',
+                      fontSize: '1.4em', /* Scale up asterisk to match letter bounding box */
+                      display: 'inline-block',
+                      transform: 'translateY(15px)' /* Nudge it down since asterisks naturally float high */
+                    }}>*</span>
+                  </h2>
+                  <span className="card-number">{cat.number}</span>
+                </div>
+                <div className="card-bottom">
+                  <p className="card-desc">{cat.desc}</p>
+                  <div className="card-image-wrapper">
+                    <img src={cat.image} alt={cat.title} />
+                  </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );

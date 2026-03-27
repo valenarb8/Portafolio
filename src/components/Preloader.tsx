@@ -31,8 +31,8 @@ const Preloader: React.FC = () => {
             position: 'fixed',
             top: 0,
             left: 0,
-            width: '100vw',
-            height: '100vh',
+            width: '100%',
+            height: '100%',
             backgroundColor: '#8b0d21', // Brand Red
             display: 'flex',
             justifyContent: 'center',

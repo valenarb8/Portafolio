@@ -26,8 +26,29 @@ function App() {
   const [activeCategory, setActiveCategory] = useState<string>('EDITORIAL');
   const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
+  const [hideNav, setHideNav] = useState(false);
   
   const [loading, setLoading] = useState(true);
+
+  const [isMenuForceOpen, setIsMenuForceOpen] = useState(false);
+
+  const isNaturallyTransparent = activePage === 'HOME' && ((scrollY < window.innerHeight - 120) || hideNav);
+  const isTransparent = isNaturallyTransparent && !isMenuForceOpen;
+  const isStaticNav = activePage === 'ABOUT' || activePage === 'PROJECTS';
+
+  useEffect(() => {
+    if (!isNaturallyTransparent && isMenuForceOpen) {
+      setIsMenuForceOpen(false);
+    }
+  }, [isNaturallyTransparent, isMenuForceOpen]);
+
+  const handleFlowerClick = () => {
+    if (isNaturallyTransparent) {
+      setIsMenuForceOpen(!isMenuForceOpen);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -46,6 +67,8 @@ function App() {
 
   const handleNavClick = (page: 'HOME' | 'ABOUT' | 'PROJECTS' | 'CONTACT', category?: string) => {
     setActivePage(page);
+    setHideNav(false);
+    setIsMenuForceOpen(false);
     if (category) {
       setActiveCategory(category);
     }
@@ -58,10 +81,6 @@ function App() {
     window.scrollTo(0, 0);
   };
 
-  const handleBackToProjects = () => {
-    setActiveProjectId(null);
-    window.scrollTo(0, 0);
-  };
 
   const renderContent = () => {
     switch (activePage) {
@@ -69,11 +88,12 @@ function App() {
         return (
           <HomePage 
             onNavigateToProjects={(cat) => handleNavClick('PROJECTS', cat)}
+            onHideNav={setHideNav}
           />
         );
       case 'PROJECTS':
-        if (activeProjectId === 1 && activeCategory === 'EDITORIAL') {
-          return <ProjectDetailPage id={activeProjectId} onBack={handleBackToProjects} />;
+        if (activeProjectId !== null) {
+          return <ProjectDetailPage id={activeProjectId} />;
         }
         return <ProjectsPage 
           category={activeCategory} 
@@ -262,18 +282,6 @@ function App() {
                 </div>
               </div>
             </main>
-
-            <footer className="footer-section">
-              <span>valenarbelaezd.wixsite.com</span>
-              <span className="footer-star">*</span>
-              <span>+57 311 360 6718</span>
-              <span className="footer-star">*</span>
-              <span>valearbelaez.06@gmail.com</span>
-              <span className="footer-star">*</span>
-              <span>Medellín, Colombia <strong>2026</strong></span>
-              <span className="footer-star">*</span>
-              <span>Derechos Reservados</span>
-            </footer>
           </>
         );
       default:
@@ -294,12 +302,13 @@ function App() {
           transition={{ duration: 1.2, ease: "easeInOut" }}
         >
           {/* Top Navigation Bar */}
-          <nav className={`top-nav ${activePage === 'HOME' && scrollY < window.innerHeight - 120 ? 'transparent-nav' : ''} ${activePage === 'ABOUT' ? 'static-nav' : ''}`}>
+          <nav className={`top-nav ${isTransparent ? 'transparent-nav' : ''} ${isStaticNav ? 'static-nav' : ''}`}>
             <div className="nav-logo-container">
               {activePage === 'HOME' ? (
                 <div 
                   className="nav-rotating-asterisk-container"
-                  style={{ transform: `rotate(${scrollY * 0.5}deg)` }}
+                  style={{ transform: `rotate(${scrollY * 0.5}deg)`, cursor: 'pointer', pointerEvents: 'auto' }}
+                  onClick={handleFlowerClick}
                 >
                   <span className="nav-rotating-asterisk">✿</span>
                 </div>
@@ -341,6 +350,47 @@ function App() {
           </nav>
 
           {renderContent()}
+
+          <footer className="footer-section">
+            <div className="footer-marquee">
+              <div className="footer-marquee-content">
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+              </div>
+              <div className="footer-marquee-content" aria-hidden="true">
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+                <span>+57 311 360 6718</span><span className="footer-star">*</span>
+                <span>valearbelaez.06@gmail.com</span><span className="footer-star">*</span>
+                <span>Medellín, Colombia <strong>2026</strong></span><span className="footer-star">*</span>
+                <span>Derechos Reservados</span><span className="footer-star">*</span>
+              </div>
+            </div>
+          </footer>
         </motion.div>
       )}
     </div>
