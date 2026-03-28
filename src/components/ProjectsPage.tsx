@@ -63,7 +63,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick, o
                 className="stacked-category-wrapper"
                 style={{ 
                   position: 'sticky',
-                  top: `${100 + (index * 110)}px`,
+                  top: `${130 + (index * 110)}px`,
                   zIndex: 1010 + index,
                   height: `${wrapperHeight}px`
                 }}
@@ -86,24 +86,19 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick, o
                   </h1>
                 )}
                 <div 
-                  className="stacked-category-card"
-                  style={{ 
-                    backgroundColor: color,
-                    color: '#1A3A3A'
-                  }}
-                  onClick={() => onProjectClick(project.id)}
-                >
-                  <div className="card-top">
-                    <h2 className="card-title" style={{ color: '#1A3A3A' }}>{project.title}</h2>
-                    <span className="card-number" style={{ color: '#1A3A3A' }}>({index < 9 ? '0' : ''}{index + 1})</span>
-                  </div>
-                  <div className="card-bottom">
-                    <p className="card-desc" style={{ color: '#1A3A3A' }}>{project.description}</p>
-                    <div className="card-image-wrapper" style={{ boxShadow: '0 5px 20px rgba(0,0,0,0.1)' }}>
-                      <img src={project.images[0].url} alt={project.title} />
-                    </div>
-                  </div>
-                </div>
+                   className="stacked-category-card"
+                   style={{ 
+                     backgroundColor: color,
+                     color: '#1A3A3A',
+                     height: '420px'
+                   }}
+                   onClick={() => onProjectClick(project.id)}
+                 >
+                   <div className="card-top">
+                     <h2 className="card-title" style={{ color: '#1A3A3A' }}>{project.title}</h2>
+                     <span className="card-number" style={{ color: '#1A3A3A' }}>({index < 9 ? '0' : ''}{index + 1})</span>
+                   </div>
+                 </div>
               </div>
             </React.Fragment>
           );

@@ -85,7 +85,6 @@
   height: 450px;
   background-color: white;
   padding: 15px 15px 60px 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   transform: rotate(-5deg);
   z-index: 3;
 }
@@ -215,7 +214,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08); /* shadow on top edge for separation */
   cursor: pointer;
   transition: transform 0.3s ease;
   overflow: hidden;

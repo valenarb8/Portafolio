@@ -27,6 +27,7 @@ function App() {
   const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
   const [hideNav, setHideNav] = useState(false);
+  const [pendingScrollId, setPendingScrollId] = useState<string | null>(null);
   
   const [loading, setLoading] = useState(true);
 
@@ -65,7 +66,31 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (page: 'HOME' | 'ABOUT' | 'PROJECTS' | 'CONTACT', category?: string) => {
+  useEffect(() => {
+    if (activePage === 'HOME' && pendingScrollId) {
+      // Periodic check to ensure the element is available in DOM
+      let attempts = 0;
+      const checkAndScroll = () => {
+        const element = document.getElementById(pendingScrollId);
+        if (element) {
+          const yOffset = -100; // Navbar offset
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          setPendingScrollId(null);
+        } else if (attempts < 10) {
+          attempts++;
+          setTimeout(checkAndScroll, 100);
+        } else {
+          setPendingScrollId(null);
+        }
+      };
+      
+      const timer = setTimeout(checkAndScroll, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [activePage, pendingScrollId]);
+
+  const handleNavClick = (page: 'HOME' | 'ABOUT' | 'PROJECTS' | 'CONTACT', category?: string, scrollId?: string) => {
     setActivePage(page);
     setHideNav(false);
     setIsMenuForceOpen(false);
@@ -73,7 +98,12 @@ function App() {
       setActiveCategory(category);
     }
     setActiveProjectId(null); 
-    window.scrollTo(0, 0);
+    
+    if (scrollId) {
+      setPendingScrollId(scrollId);
+    } else {
+      window.scrollTo(0, 0);
+    }
   };
 
   const handleProjectClick = (projectId: number) => {
@@ -93,8 +123,8 @@ function App() {
         );
       case 'PROJECTS':
         if (activeProjectId !== null) {
-          return <ProjectDetailPage id={activeProjectId} />;
-        }
+           return <ProjectDetailPage id={activeProjectId} onProjectClick={handleProjectClick} />;
+         }
         return <ProjectsPage 
           category={activeCategory} 
           onProjectClick={handleProjectClick} 
@@ -336,7 +366,13 @@ function App() {
               <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('HOME'); }} className={activePage === 'HOME' ? 'active' : ''}>INICIO</a></li>
               <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('ABOUT'); }} className={activePage === 'ABOUT' ? 'active' : ''}>SOBRE MÍ</a></li>
               <li className="dropdown">
-                <a href="#" className={activePage === 'PROJECTS' ? 'active' : ''}>PROYECTOS</a>
+                <a href="#" 
+                   className={activePage === 'PROJECTS' ? 'active' : ''}
+                   onClick={(e) => {
+                     e.preventDefault();
+                     handleNavClick('HOME', undefined, 'proyectos-inicio');
+                   }}
+                >PROYECTOS</a>
                 <div className="dropdown-content">
                   <div className="dropdown-inner">
                     <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('PROJECTS', 'EDITORIAL'); }}>EDITORIAL</a>

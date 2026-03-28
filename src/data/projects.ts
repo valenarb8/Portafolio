@@ -4,6 +4,7 @@ import conmigo1 from '../assets/images/ConmigoSiempre.png';
 import conmigo2 from '../assets/images/ConmigoSiempre2.png';
 import conmigo3 from '../assets/images/ConmigoSiempre3.png';
 import retro1 from '../assets/images/PortadaRetroMotion.png';
+import retroContra from '../assets/images/Conrtraportadaa.png';
 import retro2 from '../assets/images/OrquestaDeEnsueñoMockup.png';
 import habitados1 from '../assets/images/EcosLatinos1.png';
 import habitados2 from '../assets/images/EcosLatinos2.png';
@@ -41,11 +42,10 @@ export interface ProjectData {
   info: ProjectInfo[];
   images: ProjectImage[];
 }
-
 export const projectsData: ProjectData[] = [
   {
     id: 1,
-    title: 'Jardín del tiempo',
+    title: 'Jardin del Tiempo',
     subtitle: 'MAPA DE LAURELES',
     category: 'EDITORIAL',
     description: 'Se construye desde la idea de dualidad: un lugar donde conviven memoria y proyección, siendo un jardín donde hay un puente entre el pasado y el futuro. A través de recorridos y puntos clave, se ve el encuentro entre lo que permanece y lo que cambia.',
@@ -54,8 +54,10 @@ export const projectsData: ProjectData[] = [
       { label: 'CRÉDITOS', value: 'DG. Sofía Alzate, DG. Sofía Restrepo, DG. Ana Sofía Patiño, DG. Valentina Arbeláez' }
     ],
     images: [
-      { url: mapa1, caption: 'Mapa de Laureles, Comuna 11' },
-      { url: mapa2, caption: 'Retiro con recomendaciones locales' }
+      { url: mapa1, caption: 'Tiro' },
+      { url: mapa2, caption: 'Retiro' },
+      { url: mapa1, caption: 'Detalle Tiro' },
+      { url: mapa2, caption: 'Detalle Retiro' }
     ]
   },
   {
@@ -69,7 +71,8 @@ export const projectsData: ProjectData[] = [
       { label: 'CRÉDITOS', value: 'Valentina Arbeláez' }
     ],
     images: [
-      { url: conmigo1, caption: 'Portada e ilustraciones' },
+      { url: conmigo1, caption: 'Portada' },
+      { url: conmigo1, caption: 'Contraportada' },
       { url: conmigo2, caption: 'Detalle de composición' },
       { url: conmigo3, caption: 'Páginas interiores' }
     ]
@@ -85,7 +88,8 @@ export const projectsData: ProjectData[] = [
       { label: 'CRÉDITOS', value: 'DG. Sofía Medina, DG. Sofía Álvarez, DG. Sofía Restrepo, DG. Valentina Arbeláez' }
     ],
     images: [
-      { url: retro1, caption: 'Portada Retro Motion' },
+      { url: retro1, caption: 'Portada' },
+      { url: retroContra, caption: 'Contraportada' },
       { url: retro2, caption: 'Orquesta de ensueño - Interior' }
     ]
   },
@@ -125,7 +129,7 @@ export const projectsData: ProjectData[] = [
     title: 'Hogar',
     subtitle: 'ILUSTRACIONES',
     category: 'ILUSTRACIÓN',
-    description: 'Explora la nostalgia del hogar pasado mediante ilustraciones que reconstruyen escenas y objetos desde la memoria, evocando refugio, pertenencia e intimidad.',
+    description: 'Explora la nostalgia del hogar pasado mediante ilustraciones que reconstruyen escenas y objetos desde la memory, evocando refugio, pertenencia e intimidad.',
     info: [
       { label: 'PROYECTO PERSONAL', value: '2025' },
       { label: 'CRÉDITOS', value: 'Valentina Arbeláez' }

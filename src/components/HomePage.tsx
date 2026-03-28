@@ -99,7 +99,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
         </div>
       </div>
 
-      <div className="stacked-categories-container">
+      <div id="proyectos-inicio" className="stacked-categories-container">
         {stackedCategories.map((cat, index) => {
           const wrapperHeight = 640 - (index * 110);
 
