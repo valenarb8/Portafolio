@@ -13,9 +13,9 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick, o
 
   // Category specific colors matching the previous design
   const categoryColors: Record<string, string> = {
-    'EDITORIAL': '#FFB8D1',
-    'ILUSTRACIÓN': '#AECBD6',
-    'BRANDING': '#AEC782'
+    'EDITORIAL': '#FFD0DF',
+    'ILUSTRACIÓN': '#DFDBFF',
+    'BRANDING': '#F1F5BA'
   };
 
   const activeCategory = category.toUpperCase();

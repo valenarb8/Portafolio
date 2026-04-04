@@ -44,7 +44,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
       number: '(01)', 
       desc: 'Diseño de piezas gráficas y exploración visual estructurada para crear publicaciones con una identidad muy auténtica.',
       image: profilePic,
-      bgColor: '#FFB8D1', // Pastel Pink
+      bgColor: '#FFD0DF', // New Pastel Pink
       textColor: '#8B002B' // Dark Red
     },
     { 
@@ -53,16 +53,16 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
       number: '(02)', 
       desc: 'Creación de imágenes envolventes, piezas artísticas y personajes únicos mediante diversas técnicas visuales muy ricas.',
       image: valen1,
-      bgColor: '#AECBD6', // Pastel Blue
+      bgColor: '#DFDBFF', // New Pastel Blue/Purple
       textColor: '#1A3A3A' // Dark Teal
     },
     { 
-      id: 'MARCA', 
-      title: 'Marca', 
+      id: 'BRANDING', 
+      title: 'Branding', 
       number: '(03)', 
       desc: 'Desarrollo de estilo visual integral, estrategia sólida y posicionamiento de imagen para construir marcas que sean especiales.',
       image: valen2,
-      bgColor: '#AEC782', // Pastel Green
+      bgColor: '#F1F5BA', // New Pastel Yellow/Green
       textColor: '#2E4D2B' // Dark Green
     }
   ];
