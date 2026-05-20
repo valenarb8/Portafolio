@@ -20,3 +20,29 @@
   left: 3%;
   transform: rotate(-10deg);
 }
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.projects-page-title {
+  position: absolute;
+  top: -90px;
+  left: 0;
+  font-family: 'Ambit', sans-serif;
+  font-size: clamp(40px, 8vw, 70px);
+  color: var(--color-primary);
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .projects-page-title {
+    top: -60px;
+  }
+}

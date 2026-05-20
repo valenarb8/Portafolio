@@ -27,6 +27,25 @@
   transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
 }
 
+@media (max-width: 1024px) {
+  .top-nav {
+    padding: 0 2rem;
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    padding: 0 1.5rem;
+    height: 60px;
+    top: 10px;
+    margin-top: 10px;
+  }
+  
+  .nav-logo-container {
+    transform: scale(0.65);
+  }
+}
 
 .top-nav.transparent-nav {
   background-color: transparent;
@@ -68,10 +87,37 @@
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2.5rem; /* Increased back to separate loose text */
+  gap: 2.5rem;
   margin: 0;
   padding: 0;
   transition: opacity 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-primary);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 99;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links.mobile-open {
+    transform: translateX(0);
+  }
+
+  .top-nav.transparent-nav .nav-links.mobile-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .nav-links a {
@@ -104,7 +150,7 @@
 }
 
 .nav-links a:hover {
-  color: #ffa3cf; /* Pastel pink, but with a bit more saturation to pop */
+  color: #ffa3cf;
 }
 
 .nav-links a:hover::after {
@@ -113,7 +159,7 @@
 }
 
 .nav-links a.active {
-  color: #dfdbff; /* Custom light blue requested */
+  color: #dfdbff;
 }
 
 /* --- DROPDOWN --- */
@@ -131,7 +177,6 @@
   left: 50%;
   transform: translateX(-50%);
   padding-top: 15px;
-  /* THE BRIDGE: transparent gap that maintains hover */
 }
 
 .dropdown-inner {
@@ -165,6 +210,74 @@
   display: block;
 }
 
+@media (max-width: 768px) {
+  .dropdown-content {
+    display: block;
+    position: static;
+    transform: none;
+    padding-top: 10px;
+  }
+  
+  .dropdown-inner {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    align-items: center;
+  }
+  
+  .dropdown-inner a {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+  
+  .dropdown > a::after {
+    display: none;
+  }
+}
+
+/* --- MOBILE TOGGLE --- */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 100;
+}
+
+.mobile-menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: #fff7ef;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .mobile-menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .mobile-menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+}
+
 /* --- HEADER SECTION --- */
 .header-section {
   background-color: var(--bg-top);
@@ -172,13 +285,21 @@
   justify-content: center;
   align-items: flex-start;
   padding: 135px 80px 20px 80px;
-  /* Balanced padding */
   position: relative;
   min-height: auto;
   gap: 60px;
-  /* Consistent gap with main-section */
   margin-bottom: 30px;
   margin-top: -115px;
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    padding: 120px 2rem 2rem 2rem;
+    margin-top: -100px;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
 }
 
 .header-section::after {
@@ -198,7 +319,6 @@
   display: flex;
   align-items: flex-start;
   gap: 60px;
-  /* Ensure header content perfectly aligns with main content width */
   width: 100%;
   max-width: 1100px;
   justify-content: flex-start;
@@ -206,19 +326,34 @@
   z-index: 10;
 }
 
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+}
+
 .header-left {
   flex: 0 0 440px;
   display: flex;
   justify-content: center;
-  /* Center the photo frame */
   align-items: center;
   padding-right: 0;
+}
+
+@media (max-width: 768px) {
+  .header-left {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .profile-wrapper {
   position: relative;
   width: 100%;
-  /* Take full 440px */
   height: 520px;
   z-index: 10;
   display: flex;
@@ -226,8 +361,16 @@
   align-items: center;
   margin-bottom: -50px;
   transform: translateY(40px);
-  /* Reduced overlap for cleaner transition */
-  /* Shift removed to ensure perfect alignment */
+}
+
+@media (max-width: 768px) {
+  .profile-wrapper {
+    height: 280px;
+    margin-bottom: 25px;
+    transform: translateY(0);
+    position: relative;
+    top: -20px;
+  }
 }
 
 .profile-pic {
@@ -236,7 +379,6 @@
   object-fit: contain;
 }
 
-/* More explicit CSS for exact typography layout */
 .header-right {
   flex: 0 0 auto;
   display: flex;
@@ -253,11 +395,18 @@
   max-width: 90%;
 }
 
+@media (max-width: 768px) {
+  .title-area {
+    margin-top: 1rem;
+    align-items: center;
+    max-width: 100%;
+  }
+}
+
 .intro-text-header {
   font-family: var(--font-sans);
   font-weight: normal;
   font-size: 16px;
-  /* Reduced to 16px for refinement */
   line-height: 1.6;
   color: #000;
   display: inline-block;
@@ -265,23 +414,34 @@
   text-align: left;
   max-width: 600px;
   margin-top: 15px;
-  /* Balanced gap with logo */
+}
+
+@media (max-width: 768px) {
+  .intro-text-header {
+    text-align: center;
+    font-size: 15px;
+  }
 }
 
 .wrap-trigger {
   white-space: nowrap;
   display: block;
-  /* Force the rest to start on a new line but remain under the same container width */
 }
 
 .intro-text-header strong {
   font-weight: 600;
-  /* Ambit SemiBold */
 }
 
 .logo-valen {
   height: 160px;
   object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .logo-valen {
+    height: 100px;
+    width: 100%;
+  }
 }
 
 .subtitle {
@@ -294,7 +454,6 @@
   font-family: 'Bookmania', serif;
   font-size: 42px;
   font-weight: 600;
-  /* This points to the SemiBold face defined in index.css */
   line-height: 1.1;
 }
 
@@ -302,7 +461,6 @@
   font-family: 'Bookmania', serif;
   font-size: 32px;
   font-weight: 600;
-  /* This points to the SemiBold face defined in index.css */
 }
 
 .section-title {
@@ -310,6 +468,14 @@
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 .stamps-container {
@@ -360,7 +526,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Corrected to left-align */
   width: 100%;
 }
 
@@ -370,7 +535,7 @@
   object-fit: contain;
 }
 
-/* Ajustes individuales (se ajustarán dinámicamente) */
+/* Ajustes individuales */
 .stamp-item:nth-child(1) .stamp-icon {
   transform: scale(1) translateY(0px);
 }
@@ -394,14 +559,20 @@
 .main-section {
   display: flex;
   padding: 40px 80px 40px 80px;
-  /* Reduced bottom padding */
   gap: 60px;
   flex: 1;
-  /* Match the header inner container precisely */
   width: 100%;
   max-width: 1260px;
   margin: 0 auto;
   justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    gap: 4rem; /* More breathing room between profile, bio, education */
+  }
 }
 
 .col-left {
@@ -409,15 +580,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Both items are perfectly centered in this 440px box */
   margin-top: 0px;
+}
+
+@media (max-width: 768px) {
+  .col-left {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 }
 
 .info-block-green {
   background-color: transparent;
   width: 300px;
   padding: 40px 0 20px;
-  /* Significantly reduced top padding */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -425,6 +601,14 @@
   margin-top: 0;
   position: relative;
   z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .info-block-green {
+    width: 100%;
+    align-items: center;
+    padding: 20px 0;
+  }
 }
 
 .bio-container {
@@ -457,8 +641,13 @@
   font-family: var(--font-sans);
   font-size: 16px;
   text-align: left;
-  /* Consistent with other text */
-  line-height: 1.6;
+  line-height: 1.7; /* Extra line height for readability */
+}
+
+@media (max-width: 768px) {
+  .bio-text {
+    font-size: 1.05rem;
+  }
 }
 
 .col-center {
@@ -467,16 +656,21 @@
   flex-direction: column;
   gap: 3rem;
   padding-top: 40px;
-  /* Reduced top padding */
 }
 
 .edu-text {
   font-size: 1.15rem;
-  /* Increased as requested */
   margin-bottom: 1rem;
   font-family: var(--font-sans);
   line-height: 1.4;
   text-align: left;
+}
+
+@media (max-width: 768px) {
+  .edu-text {
+    text-align: center;
+    font-size: 1.1rem;
+  }
 }
 
 .honor-badge {
@@ -501,7 +695,6 @@
 .education-img {
   width: 140px;
   align-self: flex-start;
-  /* Ensure left-aligned */
   margin-left: 0;
 }
 
@@ -514,10 +707,10 @@
 .tools-list {
   list-style: none;
   display: flex;
-  flex-grow: 1; /* Take up available space */
+  flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 5px; /* Subtle adjustment to align with the bottom of the right column */
+  padding-bottom: 5px;
 }
 
 .tools-list li {
@@ -531,7 +724,6 @@
   font-style: italic;
   font-weight: 600;
   color: #BECA60;
-  /* Yellowish green from image */
   font-size: 2.8rem;
   width: 50px;
   line-height: 1;
@@ -540,7 +732,6 @@
 
 .tool-line {
   flex: 0 0 150px;
-  /* Fixed width to make it shorter */
   height: 3px;
   background-color: var(--color-primary);
   position: relative;
@@ -572,9 +763,7 @@
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  /* Reduced gap between sections */
   padding-top: 40px;
-  /* Reduced top padding */
 }
 
 .interests-section {
@@ -607,14 +796,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   border: none;
-}
-
-.stamp-box-interest.star-bg {
-  background-color: transparent;
-}
-
-.stamp-box-interest.apple-bg {
-  background-color: transparent;
 }
 
 .stamp-box-interest img {
@@ -684,7 +865,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding-right: 1.5rem; /* Matches the gap for seamless looping */
+  padding-right: 1.5rem;
 }
 
 @keyframes scroll-left {
@@ -701,4 +882,22 @@
   font-size: 1rem;
   line-height: 1;
   margin-top: 5px;
+}
+
+/* --- PRELOADER --- */
+.preloader-logo-wrapper {
+  position: relative;
+  width: 560px;
+  height: 326px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .preloader-logo-wrapper {
+    width: 90vw;
+    height: auto;
+    aspect-ratio: 600/350;
+  }
 }

@@ -26,7 +26,7 @@ const Preloader: React.FC = () => {
       className="preloader-container"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 1.2, ease: "easeInOut" }}
+      transition={{ duration: 1.2, delay: 0.3, ease: "easeInOut" }}
       style={{
             position: 'fixed',
             top: 0,
@@ -40,7 +40,11 @@ const Preloader: React.FC = () => {
             zIndex: 9999,
           }}
         >
-          <div style={{ position: 'relative', width: '600px', height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <motion.div 
+            className="preloader-logo-wrapper"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
             <svg
               viewBox="-50 -50 650 400"
               style={{ width: '100%', height: '100%', overflow: 'visible' }}
@@ -124,7 +128,7 @@ const Preloader: React.FC = () => {
                 </g>
               </motion.g>
             </svg>
-          </div>
+          </motion.div>
     </motion.div>
   );
 };

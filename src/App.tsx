@@ -30,8 +30,8 @@ function App() {
   const [pendingScrollId, setPendingScrollId] = useState<string | null>(null);
   
   const [loading, setLoading] = useState(true);
-
   const [isMenuForceOpen, setIsMenuForceOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isNaturallyTransparent = activePage === 'HOME' && ((scrollY < window.innerHeight - 120) || hideNav);
   const isTransparent = isNaturallyTransparent && !isMenuForceOpen;
@@ -52,8 +52,10 @@ function App() {
   };
 
   useEffect(() => {
+    // Al finalizar el timer, limpiamos el color rojo del index.html para que vuelva al color crema
     const timer = setTimeout(() => {
       setLoading(false);
+      document.body.style.backgroundColor = '';
     }, 4200);
     return () => clearTimeout(timer);
   }, []);
@@ -94,6 +96,7 @@ function App() {
     setActivePage(page);
     setHideNav(false);
     setIsMenuForceOpen(false);
+    setIsMobileMenuOpen(false); // Close mobile menu on click
     if (category) {
       setActiveCategory(category);
     }
@@ -362,7 +365,18 @@ function App() {
                 </motion.svg>
               )}
             </div>
-            <ul className="nav-links">
+            
+            <button 
+              className={`mobile-menu-toggle ${isMobileMenuOpen ? 'open' : ''}`} 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+
+            <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
               <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('HOME'); }} className={activePage === 'HOME' ? 'active' : ''}>INICIO</a></li>
               <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('ABOUT'); }} className={activePage === 'ABOUT' ? 'active' : ''}>SOBRE MÍ</a></li>
               <li className="dropdown">

@@ -17,6 +17,15 @@
   gap: 40px;
 }
 
+@media (max-width: 900px) {
+  .detail-container {
+    flex-direction: column;
+    padding: 120px 1.5rem 40px 1.5rem; /* Large top padding for sticky nav overlap fix */
+    gap: 30px;
+    width: 100%;
+  }
+}
+
 /* Horizontal Header Styling */
 .detail-container.horizontal-layout {
   flex-direction: column;
@@ -58,6 +67,18 @@
   align-items: flex-end; /* Bottom align with pink highlight */
 }
 
+@media (max-width: 900px) {
+  .header-columns {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .header-right-col {
+    padding-bottom: 0;
+  }
+}
+
 .header-left-col, .header-right-col {
   flex: 1;
   display: flex;
@@ -89,6 +110,13 @@
   width: 500px; /* Fixed width to an exact multiple of 50px scallop size to avoid cut-off */
 }
 
+@media (max-width: 768px) {
+  .title-highlight {
+    width: 100%;
+    padding: 30px 20px; /* Kept top padding generous for scallops */
+  }
+}
+
 .title-highlight::after {
   content: "";
   position: absolute;
@@ -101,8 +129,6 @@
   background-repeat: repeat-x;
   z-index: 1;
 }
-
-/* No longer needed as they are back outside */
 
 .title-highlight .project-title-large {
   color: var(--color-primary);
@@ -123,7 +149,7 @@
 
 .project-title-large {
   font-family: 'Bookmania', serif;
-  font-size: 4.5rem;
+  font-size: clamp(32px, 8vw, 4.5rem);
   font-weight: bold;
   line-height: 1.1;
 }
@@ -154,10 +180,17 @@
 .project-description-large {
   font-family: 'Ambit', sans-serif;
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.7; /* Increased for better readability */
   max-width: 550px;
   margin-top: 25px; /* Space from metadata */
   margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+  .project-description-large {
+    max-width: 100%;
+    font-size: 1.05rem; /* Slightly larger on mobile */
+  }
 }
 
 .project-credits h3 {
@@ -203,12 +236,25 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .images-featured-group {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
 .image-featured {
   max-width: 500px; /* Size for dual side-by-side */
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .image-featured {
+    max-width: 100%;
+  }
 }
 
 .single-featured .image-featured {
@@ -235,6 +281,13 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .image-spread {
+    width: 100%;
+    gap: 10px;
+  }
 }
 
 .image-spread img {

@@ -69,19 +69,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick, o
                 }}
               >
                 {index === 0 && (
-                  <h1 style={{
-                    position: 'absolute',
-                    top: '-90px',
-                    left: '0',
-                    fontFamily: "'Ambit', sans-serif", 
-                    fontSize: '70px', 
-                    color: 'var(--color-primary)', 
-                    margin: 0,
-                    textTransform: 'uppercase',
-                    fontWeight: 'bold',
-                    lineHeight: 1,
-                    pointerEvents: 'none'
-                  }}>
+                  <h1 className="projects-page-title">
                     {category}
                   </h1>
                 )}

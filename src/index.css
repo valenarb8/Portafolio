@@ -45,6 +45,7 @@
   src: url('./assets/fonts/fonnts.com-Bookmania_Semibold_Italic.otf') format('opentype');
   font-weight: 600;
   font-style: italic;
+  font-size-adjust: 0.5;
 }
 
 @font-face {
@@ -57,6 +58,8 @@
 :root {
   --bg-top: #E1E1FB;
   --bg-body: #FFFBE6;
+  --bg-hero: #FFE5E0;
+  --bg-hero-blue: #E8EDFF;
   --bg-blob: #E6F7D4;
   --color-primary: #A00028;
   --color-gold: #A6924B;
@@ -76,15 +79,31 @@
   padding: 0;
 }
 
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--bg-body);
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   color: var(--color-primary);
   margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
