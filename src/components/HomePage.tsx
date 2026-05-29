@@ -6,8 +6,8 @@ import casaMarca from '../assets/images/CasaMarca.png';
 import puertaRosada from '../assets/images/PuertaRosada.png';
 import puertaAzul from '../assets/images/PuertaAzul.png';
 import puertaVerde from '../assets/images/PuertaVerde.png';
-import valenLandingImg from '../assets/images/ValenParaLanding.png';
-
+import valenLandingImg from '../assets/images/LandingInicio.png';
+import { projectsData } from '../data/projects';
 
 interface HomePageProps {
   onNavigateToProjects: (category: string) => void;
@@ -47,7 +47,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
       id: 'editorial', 
       title: 'Editorial', 
       number: '(01)', 
-      desc: 'Diseño y diagramación de piezas gráficas. Creación de publicaciones estructuradas con un enfoque visual limpio y detallado.',
+      desc: <>Revistas, mapas, libros y piezas variadas.</>,
       image: casaEditorial,
       doorImage: puertaRosada,
       bgColor: '#FFC4D9', // Rosa
@@ -59,7 +59,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
       id: 'ilustracion', 
       title: 'Ilustración', 
       number: '(02)', 
-      desc: 'Creación de ilustraciones y personajes. Exploración gráfica a través de diferentes técnicas para dar vida a ideas y conceptos.',
+      desc: <>Personajes, composiciones, portadas<br/>y universos visuales.</>,
       image: casaIlustracion,
       doorImage: puertaAzul,
       bgColor: '#C4E1FF', // Azul
@@ -71,7 +71,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
       id: 'branding', 
       title: 'Branding', 
       number: '(03)', 
-      desc: 'Desarrollo de identidades visuales. Estrategia y diseño para construir marcas con un estilo propio y coherente.',
+      desc: <>Identidades visuales, tono de marca,<br/>empaques y dirección creativa.</>,
       image: casaMarca,
       doorImage: puertaVerde,
       bgColor: '#E5F487', // Verde/Amarillo
@@ -90,8 +90,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
         </filter>
       </svg>
-      <div className="hero-section">
-        <div className="noise-overlay"></div>
+      <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', flex: 1, marginTop: '-115px' }}>
+        <div className="hero-section">
+          <div className="noise-overlay"></div>
+        </div>
         <div className="hero-logo-center">
           <div className="hero-center-logo">
 
@@ -104,31 +106,22 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
         </div>
       </div>
 
-      <div id="proyectos-inicio" className="stacked-categories-container">
+      <div id="proyectos-inicio" className="categories-list-container">
         {stackedCategories.map((cat, index) => {
-          const wrapperHeight = 640 - (index * 110);
-
+          const categoryIdMap: Record<string, string> = { 'editorial': 'EDITORIAL', 'ilustracion': 'ILUSTRACIÓN', 'branding': 'BRANDING' };
+          const mappedId = categoryIdMap[cat.id] || cat.id;
           return (
             <React.Fragment key={cat.id}>
               {index === 2 && <div ref={sentinelRef} style={{ width: '100%', height: '1px' }} />}
-              <div 
-                className="stacked-category-wrapper"
-                style={{ 
-                  position: 'sticky',
-                  top: `${130 + (index * 110)}px`,
-                  zIndex: 1010 + index,
-                  height: `${wrapperHeight}px`
-                }}
-              >
-              <div 
-                className="stacked-category-card"
-                style={{ 
-                  backgroundColor: cat.bgColor,
-                  color: cat.textColor
-                }}
-                onClick={() => onNavigateToProjects(cat.id)}
-              >
-                <div className="card-top">
+              <div className={`category-list-item ${index % 2 !== 0 ? 'reverse' : ''}`}>
+                <div 
+                  className="category-text-box"
+                  style={{ 
+                    backgroundColor: cat.bgColor,
+                    color: cat.textColor
+                  }}
+                  onClick={() => onNavigateToProjects(mappedId)}
+                >
                   <h2 className="card-title" style={{ 
                     color: cat.textColor,
                     fontFamily: "'Ambit', sans-serif",
@@ -140,14 +133,36 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
                       fontFamily: "'MV Boli', cursive", 
                       fontWeight: 'normal', 
                       paddingLeft: '10px',
-                      fontSize: '1.4em', /* Scale up asterisk to match letter bounding box */
+                      fontSize: '1.4em',
                       display: 'inline-block',
-                      transform: 'translateY(15px)' /* Nudge it down since asterisks naturally float high */
+                      transform: 'translateY(15px)'
                     }}>*</span>
                   </h2>
-                </div>
-                <div className="card-bottom" style={{ '--accent-shadow': cat.shadowColor } as React.CSSProperties}>
                   <p className="card-desc" style={{ color: cat.textColor }}>{cat.desc}</p>
+                  <div className="category-projects-pills">
+                    {projectsData.filter(p => {
+                      return p.category === mappedId;
+                    }).map(project => (
+                      <span 
+                        key={project.id} 
+                        className="project-pill"
+                        style={{ 
+                          backgroundColor: cat.doorBgColor,
+                          color: cat.textColor,
+                          border: `1px solid ${cat.textColor}40`
+                        }}
+                      >
+                        {project.title}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div 
+                  className="category-image-box" 
+                  style={{ '--accent-shadow': cat.shadowColor } as React.CSSProperties}
+                  onClick={() => onNavigateToProjects(mappedId)}
+                >
                   <div className="card-image-wrapper house-stamp">
                     <div className="stamp-base"></div>
                     <img src={cat.image} alt={cat.title} />
@@ -158,7 +173,6 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
                   </div>
                 </div>
               </div>
-            </div>
             </React.Fragment>
           );
         })}

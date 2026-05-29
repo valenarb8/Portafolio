@@ -547,12 +547,13 @@
 }
 
 .stamp-item .stamp-label {
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-family: var(--font-sans);
   font-weight: 600;
   color: #000;
   transform: translateX(-18px);
   display: inline-block;
+  margin-top: 10px;
 }
 
 /* --- MAIN SECTION --- */
@@ -659,7 +660,7 @@
 }
 
 .edu-text {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   margin-bottom: 1rem;
   font-family: var(--font-sans);
   line-height: 1.4;
@@ -669,7 +670,7 @@
 @media (max-width: 768px) {
   .edu-text {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 }
 

@@ -224,6 +224,12 @@ function App() {
                       <span className="asterisk">*</span>
                       <p>Distinción académica<br/>Núcleo Profesional I<br/>| 2025 -01<br/>Ecos Latinos</p>
                     </div>
+                    
+                    <p className="edu-text" style={{ marginTop: '1.2rem' }}>
+                      Carrera de Desarrollo<br/>
+                      Frontend React<br/>
+                      CoderHouse | 2026
+                    </p>
                   </div>
                   
                   <div className="emphasis-area" style={{ marginTop: '0.5rem' }}>

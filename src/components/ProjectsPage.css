@@ -46,3 +46,101 @@
     top: -60px;
   }
 }
+
+/* Stacked Categories specific to Projects Page */
+.stacked-categories-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 40px 150px 40px;
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 1024px) {
+  .stacked-categories-container {
+    padding: 60px 2rem 100px 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stacked-categories-container {
+    padding: 40px 1rem 80px 1rem;
+  }
+}
+
+.stacked-category-wrapper {
+  width: 100%;
+}
+
+.stacked-category-card {
+  width: 100%;
+  height: 420px;
+  border-radius: 20px;
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stacked-category-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(farthest-corner at 0% 0%, rgba(255, 160, 120, 0.5) 0%, transparent 100%),
+    radial-gradient(farthest-corner at 100% 100%, rgba(160, 120, 255, 0.5) 0%, transparent 100%),
+    radial-gradient(farthest-corner at 0% 100%, rgba(255, 100, 160, 0.5) 0%, transparent 100%),
+    radial-gradient(farthest-corner at 100% 0%, rgba(100, 220, 255, 0.5) 0%, transparent 100%);
+  background-size: 200px 200px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: overlay;
+  opacity: 0.95;
+}
+
+.stacked-category-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .stacked-category-card {
+    height: auto;
+    min-height: 400px;
+    padding: 2.5rem 2rem;
+    gap: 1.5rem;
+  }
+}
+
+.stacked-category-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.card-number {
+  font-family: var(--font-sans);
+  font-size: clamp(32px, 6vw, 55px);
+  font-weight: 900;
+  margin: 0;
+  line-height: 1;
+}

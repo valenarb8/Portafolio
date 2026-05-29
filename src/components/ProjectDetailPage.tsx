@@ -70,20 +70,22 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ id, onProjectClic
         <div className="detail-main">
           <div className="project-images-stack">
             {/* Featured Images (Dual for Editorial, Single for others) */}
-            <div className={`images-featured-group ${project.category !== 'EDITORIAL' ? 'single-featured' : ''}`}>
-              {project.images.slice(0, project.category === 'EDITORIAL' ? 2 : 1).map((img, idx) => (
-                <div key={`featured-${idx}`} className="image-featured">
-                  <img src={img.url} alt={img.caption} />
-                  <span className="map-caption">{img.caption}</span>
-                </div>
-              ))}
-            </div>
+            {!project.noFeatured && (
+              <div className={`images-featured-group ${project.category !== 'EDITORIAL' || project.singleFeatured ? 'single-featured' : ''}`}>
+                {project.images.slice(0, project.category === 'EDITORIAL' && !project.singleFeatured ? 2 : 1).map((img, idx) => (
+                  <div key={`featured-${idx}`} className="image-featured">
+                    <img src={img.url} alt={img.caption} />
+                    <span className="map-caption">{img.caption}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Secondary Spreads/Internal Pages */}
-            {project.images.length > (project.category === 'EDITORIAL' ? 2 : 1) && (
+            {(project.noFeatured || project.images.length > (project.category === 'EDITORIAL' && !project.singleFeatured ? 2 : 1)) && (
               <div className="images-grid">
-                {project.images.slice(project.category === 'EDITORIAL' ? 2 : 1).map((img, idx) => (
-                  <div key={`spread-${idx}`} className="image-spread">
+                {project.images.slice(project.noFeatured ? 0 : (project.category === 'EDITORIAL' && !project.singleFeatured ? 2 : 1)).map((img, idx) => (
+                  <div key={`spread-${idx}`} className={`image-spread ${img.halfWidth ? 'half-width' : ''} ${img.thirdWidth ? 'third-width' : ''} ${img.autoHeight ? 'auto-height' : ''}`}>
                     <img src={img.url} alt={img.caption} />
                     <span className="map-caption">{img.caption}</span>
                   </div>
@@ -104,6 +106,11 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ id, onProjectClic
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
+          
+          <span className="nav-counter" style={{ color: 'var(--color-primary)', fontFamily: "'Ambit', sans-serif", fontSize: '1.2rem', fontWeight: 'bold' }}>
+            {currentIndex + 1} / {categoryProjects.length}
+          </span>
+
           <button 
             className="nav-arrow next" 
             onClick={() => onProjectClick(nextProject.id)}
