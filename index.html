@@ -7,6 +7,12 @@
     <title>Valen</title>
   </head>
   <body style="background-color: #8b0d21; margin: 0; padding: 0;">
+    <script>
+      var savedPage = sessionStorage.getItem('activePage');
+      if (savedPage && savedPage !== 'HOME') {
+        document.body.style.backgroundColor = '';
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

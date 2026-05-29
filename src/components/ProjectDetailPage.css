@@ -201,6 +201,9 @@
   .project-description-large {
     max-width: 100%;
     font-size: 1.05rem; /* Slightly larger on mobile */
+    white-space: normal; /* Ignore \n hard breaks on mobile */
+    text-align: left; /* Left align text */
+    line-height: 1.5; /* Keep text slightly more together */
   }
 }
 
@@ -347,9 +350,15 @@
   }
   
   .image-spread.half-width img,
-  .image-spread.third-width img {
+  .image-spread.third-width img,
+  .image-spread.auto-height img {
     height: auto;
     width: 100%;
+    transform: none;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
   }
 }
 

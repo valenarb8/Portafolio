@@ -85,7 +85,7 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ id, onProjectClic
             {(project.noFeatured || project.images.length > (project.category === 'EDITORIAL' && !project.singleFeatured ? 2 : 1)) && (
               <div className="images-grid">
                 {project.images.slice(project.noFeatured ? 0 : (project.category === 'EDITORIAL' && !project.singleFeatured ? 2 : 1)).map((img, idx) => (
-                  <div key={`spread-${idx}`} className={`image-spread ${img.halfWidth ? 'half-width' : ''} ${img.thirdWidth ? 'third-width' : ''} ${img.autoHeight ? 'auto-height' : ''}`}>
+                  <div key={`spread-${idx}`} className={`image-spread ${img.halfWidth ? 'half-width' : ''} ${img.thirdWidth ? 'third-width' : ''} ${img.autoHeight ? 'auto-height' : ''} ${img.hideOnMobile ? 'hide-on-mobile' : ''}`}>
                     <img src={img.url} alt={img.caption} />
                     <span className="map-caption">{img.caption}</span>
                   </div>

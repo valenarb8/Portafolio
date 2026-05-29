@@ -63,10 +63,12 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick, o
                 className="stacked-category-wrapper"
                 style={{ 
                   position: 'sticky',
-                  top: `${130 + (index * 110)}px`,
                   zIndex: 1010 + index,
-                  height: `${wrapperHeight}px`
-                }}
+                  '--top-desktop': `${130 + (index * 110)}px`,
+                  '--top-mobile': `${100 + (index * 60)}px`,
+                  '--wrapper-desktop': `${wrapperHeight}px`,
+                  '--wrapper-mobile': `${(N - 1 - index) * 60 + 180}px`
+                } as React.CSSProperties}
               >
                 {index === 0 && (
                   <h1 className="projects-page-title">
@@ -77,8 +79,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ category, onProjectClick, o
                    className="stacked-category-card"
                    style={{ 
                      backgroundColor: color,
-                     color: '#1A3A3A',
-                     height: '420px'
+                     color: '#1A3A3A'
                    }}
                    onClick={() => onProjectClick(project.id)}
                  >

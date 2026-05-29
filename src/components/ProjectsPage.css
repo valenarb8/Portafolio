@@ -74,6 +74,15 @@
 
 .stacked-category-wrapper {
   width: 100%;
+  height: var(--wrapper-desktop);
+  top: var(--top-desktop);
+}
+
+@media (max-width: 768px) {
+  .stacked-category-wrapper {
+    height: var(--wrapper-mobile);
+    top: var(--top-mobile);
+  }
 }
 
 .stacked-category-card {
@@ -120,7 +129,7 @@
 @media (max-width: 768px) {
   .stacked-category-card {
     height: auto;
-    min-height: 400px;
+    min-height: 180px;
     padding: 2.5rem 2rem;
     gap: 1.5rem;
   }

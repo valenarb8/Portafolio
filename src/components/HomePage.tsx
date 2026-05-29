@@ -7,6 +7,7 @@ import puertaRosada from '../assets/images/PuertaRosada.png';
 import puertaAzul from '../assets/images/PuertaAzul.png';
 import puertaVerde from '../assets/images/PuertaVerde.png';
 import valenLandingImg from '../assets/images/LandingInicio.png';
+import valenLandingCelularImg from '../assets/images/LandingCelular.png';
 import { projectsData } from '../data/projects';
 
 interface HomePageProps {
@@ -96,12 +97,14 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToProjects, onHideNav }) 
         </div>
         <div className="hero-logo-center">
           <div className="hero-center-logo">
-
-            <img 
-              src={valenLandingImg} 
-              alt="Valen Landing Logo" 
-              style={{ width: '100%', height: 'auto', objectFit: 'contain', zIndex: 10, position: 'relative' }} 
-            />
+            <picture style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <source media="(max-width: 768px)" srcSet={valenLandingCelularImg} />
+              <img 
+                src={valenLandingImg} 
+                alt="Valen Landing Logo" 
+                style={{ width: '100%', height: 'auto', objectFit: 'contain', zIndex: 10, position: 'relative' }} 
+              />
+            </picture>
           </div>
         </div>
       </div>

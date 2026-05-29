@@ -22,14 +22,40 @@ import lockBlue from './assets/images/Candadoazul.png';
 import lockPink from './assets/images/Candadorosa.png';
 
 function App() {
-  const [activePage, setActivePage] = useState<'HOME' | 'ABOUT' | 'PROJECTS' | 'CONTACT'>('HOME');
-  const [activeCategory, setActiveCategory] = useState<string>('EDITORIAL');
-  const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
+  const [activePage, setActivePage] = useState<'HOME' | 'ABOUT' | 'PROJECTS' | 'CONTACT'>(() => {
+    return (sessionStorage.getItem('activePage') as any) || 'HOME';
+  });
+  const [activeCategory, setActiveCategory] = useState<string>(() => {
+    return sessionStorage.getItem('activeCategory') || 'EDITORIAL';
+  });
+  const [activeProjectId, setActiveProjectId] = useState<number | null>(() => {
+    const saved = sessionStorage.getItem('activeProjectId');
+    return saved ? parseInt(saved, 10) : null;
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('activePage', activePage);
+  }, [activePage]);
+
+  useEffect(() => {
+    sessionStorage.setItem('activeCategory', activeCategory);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    if (activeProjectId !== null) {
+      sessionStorage.setItem('activeProjectId', activeProjectId.toString());
+    } else {
+      sessionStorage.removeItem('activeProjectId');
+    }
+  }, [activeProjectId]);
   const [scrollY, setScrollY] = useState(0);
   const [hideNav, setHideNav] = useState(false);
   const [pendingScrollId, setPendingScrollId] = useState<string | null>(null);
   
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    const savedPage = sessionStorage.getItem('activePage');
+    return !savedPage || savedPage === 'HOME';
+  });
   const [isMenuForceOpen, setIsMenuForceOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -52,13 +78,17 @@ function App() {
   };
 
   useEffect(() => {
+    if (!loading) {
+      document.body.style.backgroundColor = '';
+      return;
+    }
     // Al finalizar el timer, limpiamos el color rojo del index.html para que vuelva al color crema
     const timer = setTimeout(() => {
       setLoading(false);
       document.body.style.backgroundColor = '';
     }, 4200);
     return () => clearTimeout(timer);
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     const handleScroll = () => {

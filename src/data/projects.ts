@@ -41,6 +41,7 @@ export interface ProjectImage {
   halfWidth?: boolean;
   thirdWidth?: boolean;
   autoHeight?: boolean;
+  hideOnMobile?: boolean;
 }
 
 export interface ProjectData {
@@ -68,8 +69,8 @@ export const projectsData: ProjectData[] = [
     images: [
       { url: mapa1, caption: 'Tiro' },
       { url: mapa2, caption: 'Retiro' },
-      { url: mapa1, caption: 'Detalle Tiro' },
-      { url: mapa2, caption: 'Detalle Retiro' }
+      { url: mapa1, caption: 'Detalle Tiro', hideOnMobile: true },
+      { url: mapa2, caption: 'Detalle Retiro', hideOnMobile: true }
     ]
   },
   {

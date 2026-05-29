@@ -428,8 +428,21 @@
 
 @media (max-width: 768px) {
   .intro-text-header {
-    text-align: center;
+    text-align: left !important;
     font-size: 15px;
+    padding: 0 2rem !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .intro-text-header br {
+    display: none;
+  }
+  
+  .wrap-trigger {
+    white-space: normal !important;
+    display: inline !important;
   }
 }
 
