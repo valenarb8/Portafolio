@@ -211,6 +211,15 @@
 }
 
 @media (max-width: 768px) {
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown {
+    display: block;
+  }
+
   .dropdown-content {
     display: block;
     position: static;
@@ -226,8 +235,9 @@
   }
   
   .dropdown-inner a {
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 8px 16px;
+    display: inline-block;
   }
   
   .dropdown > a::after {

@@ -113,7 +113,16 @@
 @media (max-width: 768px) {
   .title-highlight {
     width: 100%;
-    padding: 30px 20px; /* Kept top padding generous for scallops */
+    padding: 30px 110px 30px 20px; /* Much larger right padding to avoid key icon box overlap */
+    min-height: 120px;
+  }
+
+  .title-key-icon {
+    width: 60px;
+    right: 15px;
+    top: auto;
+    bottom: 5px;
+    transform: none;
   }
 }
 
