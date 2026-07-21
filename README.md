@@ -8,4 +8,4 @@ Como Ejecutar el proyecto de manera local:
 
 Link de despliegue en Github pages: https://valenarb8.github.io/Portafolio/
 
-Créditos: Valentina Arbeláez Durango y Daniel Cardona González.
+Créditos: Valentina Arbeláez Durango y Daniel Cardona Gonzalez.
